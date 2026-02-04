@@ -4767,7 +4767,7 @@ SGPstateData[["KS"]][["Achievement"]][["Cutscores"]] <-
 
 SGPstateData[["KS"]][["Achievement"]][["Levels"]] <- list(
 	Labels=c("Academic Warning", "Approaching Standard", "Meets Standard", "Exceeds Standard", "Not Tested"),
-	Proficient=c("Not Proficient", "Not Proficient", "Proficient", "Proficient", "Proficient", NA))
+	Proficient=c("Not Proficient", "Not Proficient", "Proficient", "Proficient", NA))
 
 SGPstateData[["KS"]][["Growth"]][["Levels"]] <- c("Low", "Typical", "High")
 
