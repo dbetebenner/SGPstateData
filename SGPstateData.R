@@ -8273,8 +8273,8 @@ SGPstateData[["RLI_UK"]][["Variable_Name_Lookup"]] <- read.csv("Variable_Name_Lo
 
 ### RHODE ISLAND (Original meta-data with RIDE/PARCC)
 
-#load("Knots_Boundaries/RI_Knots_Boundaries.Rdata")
-#SGPstateData[["RI_ORIGINAL"]][["Achievement"]][["Knots_Boundaries"]] <- RI_Knots_Boundaries
+load("Knots_Boundaries/RI_Knots_Boundaries.Rdata")
+SGPstateData[["RI_ORIGINAL"]][["Achievement"]][["Knots_Boundaries"]] <- RI_Knots_Boundaries
 
 #SGPstateData[["RI_ORIGINAL"]][["Achievement"]][["Knots_Boundaries"]] <-
 #	list(
@@ -8454,7 +8454,7 @@ SGPstateData[["RI_ORIGINAL"]][["SGP_Configuration"]] <- list(
 #load("Baseline_Coefficient_Matrices/RI/RI_Baseline_Matrices.Rdata")
 #SGPstateData[["RI_ORIGINAL"]][["Baseline_splineMatrix"]][["Coefficient_Matrices"]][["READING.BASELINE"]] <- RI_Baseline_Matrices[["READING.BASELINE"]]
 #SGPstateData[["RI_ORIGINAL"]][["Baseline_splineMatrix"]][["Coefficient_Matrices"]][["MATHEMATICS.BASELINE"]] <- RI_Baseline_Matrices[["MATHEMATICS.BASELINE"]]
-SGPstateData[["RI_ORIGINAL"]][["Variable_Name_Lookup"]] <- read.csv("Variable_Name_Lookup/RI_Variable_Name_Lookup.csv", colClasses=c(rep("character", 4), "logical"))
+#SGPstateData[["RI_ORIGINAL"]][["Variable_Name_Lookup"]] <- read.csv("Variable_Name_Lookup/RI_Variable_Name_Lookup.csv", colClasses=c(rep("character", 4), "logical"))
 
 
 ### RHODE ISLAND (USED for STATE ANALYSES in 2016)
@@ -8779,6 +8779,18 @@ SGPstateData[["RI"]][["Student_Report_Information"]] <-
 			"Exceeding"="Exceeding Expectations"))
 
 SGPstateData[["RI"]][["Variable_Name_Lookup"]] <- read.csv("Variable_Name_Lookup/RICAS_Variable_Name_Lookup.csv", colClasses=c(rep("character", 4), "logical"))
+
+#####################################################
+### RI_OLD (TEMP for custom analysis)
+#####################################################
+load("Knots_Boundaries/RI_Original_Meta_Data.Rdata")
+SGPstateData[["RI_OLD"]][["Achievement"]] <- RI_Original_Meta_Data[["Achievement"]]
+SGPstateData[["RI_OLD"]][["Growth"]] <- RI_Original_Meta_Data[["Growth"]]
+SGPstateData[["RI_OLD"]][["Assessment_Program_Information"]] <- RI_Original_Meta_Data[["Assessment_Program_Information"]]
+SGPstateData[["RI_OLD"]][["Student_Report_Information"]] <- RI_Original_Meta_Data[["Student_Report_Information"]]
+SGPstateData[["RI_OLD"]][["SGP_Configuration"]] <- RI_Original_Meta_Data[["SGP_Configuration"]]
+
+
 
 #########################################################
 ### SOUTH DAKOTA
