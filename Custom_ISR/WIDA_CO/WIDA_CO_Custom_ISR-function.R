@@ -95,11 +95,15 @@ function() {
 						NY3=as.numeric(tmp_student_data[[paste('ISR_CUSTOM_DATA', last.year, sep=".")]][[1]][['CURRENT_SS_TARGET_PLOTTING']][3]))),
 				Cutscores=sgPlot.cutscores[[content_areas[vp]]],
 				Years=rev(sgPlot.years),
-				Report_Parameters=list(Current_Year=last.year, Content_Area=content_areas[vp], State="WIDA_CO", SGP_Targets=sgPlot.sgp.targets,
+				Report_Parameters = list(
+					Current_Year = last.year, Content_Area = content_areas[vp], State = "WIDA_CO",
+					SGP_Targets = sgPlot.sgp.targets, Assessment_Transition = sgPlot.linkages, 
 					# Content_Area_Title=tmp_student_data[[paste("CONTENT_AREA_LABELS", last.year, sep=".")]], Configuration= list(Font_Size="Small_1")))
-					Content_Area_Title=tmp_student_data[[paste("CONTENT_AREA_LABELS", last.year, sep=".")]], Configuration= list(Zero_to_K =TRUE, Font_Size=list(
-						title.ca.size = 1.6, legend.size = 0.6, bottom.right.vp.size = 1.2, bottom.left.vp.size = 0.6))))
-
+					Content_Area_Title = tmp_student_data[[paste("CONTENT_AREA_LABELS", last.year, sep=".")]],
+					Configuration = list(Zero_to_K =TRUE, Font_Size=list(
+						title.ca.size = 1.6, legend.size = 0.6, bottom.right.vp.size = 1.2, bottom.left.vp.size = 0.6))
+				)
+			)
 			popViewport()
 		} ## END loop over content_areas
 
@@ -267,13 +271,17 @@ function() {
 						NY1=as.numeric(tmp_student_data[[paste('ISR_CUSTOM_DATA', last.year, sep=".")]][[1]][['CURRENT_SS_TARGET_PLOTTING']][1]),
 						NY2=as.numeric(tmp_student_data[[paste('ISR_CUSTOM_DATA', last.year, sep=".")]][[1]][['CURRENT_SS_TARGET_PLOTTING']][2]),
 						NY3=as.numeric(tmp_student_data[[paste('ISR_CUSTOM_DATA', last.year, sep=".")]][[1]][['CURRENT_SS_TARGET_PLOTTING']][3]))),
-				Cutscores=sgPlot.cutscores[[content_areas[vp]]],
-				Years=rev(sgPlot.years),
-				Report_Parameters=list(Current_Year=last.year, Content_Area=content_areas[vp], State="WIDA_CO_SPANISH", SGP_Targets=sgPlot.sgp.targets,
+				Cutscores = sgPlot.cutscores[[content_areas[vp]]],
+				Years = rev(sgPlot.years),
+				Report_Parameters = list(
+					Current_Year = last.year, Content_Area = content_areas[vp], State = "WIDA_CO_SPANISH",
+					SGP_Targets = sgPlot.sgp.targets, Assessment_Transition = sgPlot.linkages,
 					# Content_Area_Title=tmp_student_data[[paste("CONTENT_AREA_LABELS", last.year, sep=".")]], Configuration= list(Language = "Spanish", Font_Size="Small_1")))
-					Content_Area_Title=tmp_student_data[[paste("CONTENT_AREA_LABELS", last.year, sep=".")]], Configuration= list(Language = "Spanish", Zero_to_K =TRUE, Font_Size=list(
-						title.ca.size = 1.6, legend.size = 0.6, bottom.right.vp.size = 1.2, bottom.left.vp.size = 0.5))))
-
+					Content_Area_Title = tmp_student_data[[paste("CONTENT_AREA_LABELS", last.year, sep=".")]],
+					Configuration = list(Language = "Spanish", Zero_to_K = TRUE, Font_Size = list(
+						title.ca.size = 1.6, legend.size = 0.6, bottom.right.vp.size = 1.2, bottom.left.vp.size = 0.5))
+				)
+			)
 			popViewport()
 		} ## END loop over content_areas
 

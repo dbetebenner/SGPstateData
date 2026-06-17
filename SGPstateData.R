@@ -1918,7 +1918,7 @@ SGPstateData[["CO"]][['SGP_Progression_Preference']] <-
 
   talc.dates <-
     c("2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024",
-	  "2025", "2026", "2027")
+	  "2025", "2026", "2027", "2027", "2029")
 
   SGPstateData[["CO"]][["Student_Report_Information"]] = list(
       Include_Front_Page_in_School_Catalog = FALSE,
@@ -4386,9 +4386,9 @@ SGPstateData[["IL_ORIGINAL"]][["Student_Report_Information"]] <-
 
 ### ILLINOIS
 
-load("Knots_Boundaries/PARCC_IL_Knots_Boundaries.Rdata")
+IL_Knots_Boundaries <- readRDS("Knots_Boundaries/IL_Post_PARCC_knots_bounds.rds")
 SGPstateData[["IL"]] <- SGPstateData[['PARCC']]
-SGPstateData[["IL"]][["Achievement"]][["Knots_Boundaries"]] <- PARCC_IL_Knots_Boundaries
+SGPstateData[["IL"]][["Achievement"]][["Knots_Boundaries"]] <- IL_Knots_Boundaries
 
 SGPstateData[["IL"]][["Assessment_Program_Information"]] <-
 	list(
@@ -9034,7 +9034,7 @@ SGPstateData[["UT"]][["SGP_Configuration"]] <-
 		sgp.cohort.size = 2000, # per A. Brough 9/19/25 email
 		print.other.gp = TRUE,
 		return.norm.group.scale.scores=TRUE,
-		sgp.less.than.sgp.cohort.size.return="<3000",
+		sgp.less.than.sgp.cohort.size.return="<2000",
 		max.order.for.percentile=5,
 		max.order.for.projection=5, # All available SAGE per R.R. 8/13/18
 		sgp.projections.use.only.complete.matrices=FALSE,
@@ -9056,6 +9056,36 @@ SGPstateData[["UT"]][["Assessment_Program_Information"]] <-
 		Test_Season="Spring",
 		Assessment_Years=c("2014", "2015", "2016", "2017", "2018", "2019", "2021"),
 		Test_Vendor="Questar/Pearson")
+
+
+SGPstateData[["UT"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <- list(
+    Assessment_Abbreviation = c("RISE", "UA+"),
+    Assessment_Abbreviation.2025 = c("RISE", "UA+"),
+    Assessment_Name = c("Readiness Improvement Success Empowerment", "Utah Aspire Plus"),
+    Assessment_Name.2025 = c("Readiness Improvement Success Empowerment", "Utah Aspire Plus"),
+    Achievement_Levels = list(
+        Labels = c("Below", "Approaching", "Proficient", "Highly"),
+        Proficient = c("Not Proficient", "Not Proficient", "Proficient", "Proficient")),
+    Achievement_Levels.2025 = list(
+        Labels = c("Below", "Approaching", "Proficient", "Highly"),
+        Proficient = c("Not Proficient", "Not Proficient", "Proficient", "Proficient")),
+    Achievement_Level_Labels = list(
+        "Below" = "Below",
+        "Approaching" = "Approaching",
+        "Proficient" = "Proficient",
+        "Highly" = "Highly"),
+    Achievement_Level_Labels.2025 = list(
+        "Below" = "Below",
+        "Approaching" = "Approaching",
+        "Proficient" = "Proficient",
+        "Highly" = "Highly"),
+    Content_Areas_Labels = list(ELA = "ELA"), # MATHEMATICS = "Math", SCIENCE = "Science"),
+    Content_Areas_Labels.2025 = list(ELA = "ELA"), # MATHEMATICS = "Math", 
+    Vertical_Scale = "No",
+    Vertical_Scale.2025 = "No",
+    Grades_Tested = 3:10,
+    Grades_Tested.2025 = 3:10,
+    Year = "2025")
 
 
 SGPstateData[["UT"]][["Student_Report_Information"]] <- list(
@@ -10445,24 +10475,33 @@ SGPstateData[["VI"]][["SGP_Configuration"]] <- list(
 #########################################################################################
 
 load("Knots_Boundaries/WIDA_Knots_Boundaries.Rdata")
-SGPstateData[["WIDA"]][["Achievement"]][["Knots_Boundaries"]] <- WIDA_Knots_Boundaries
+WIDA_Equated_Knots_Bounds <-
+    readRDS("Knots_Boundaries/WIDA_Equated_Knots_Bounds.rds")
+WIDA_Linkages_2026 <-
+    readRDS("Linkages/WIDA_Linkages_2026.rds")
+
+SGPstateData[["WIDA"]][["Achievement"]][["Knots_Boundaries"]][["READING"]] <-
+    WIDA_Knots_Boundaries[["READING.2016"]]
+SGPstateData[["WIDA"]][["Achievement"]][["Knots_Boundaries"]][["READING.2026"]] <-
+      WIDA_Equated_Knots_Bounds
 
 SGPstateData[["WIDA"]][["Achievement"]][["Cutscores"]] <- list(
-	READING=list(
-		GRADE_0=c(237, 263, 288, 307, 329),
-		GRADE_1=c(249, 277, 303, 321, 344),
-		GRADE_2=c(261, 290, 316, 335, 357),
-		GRADE_3=c(272, 303, 328, 347, 369),
-		GRADE_4=c(283, 314, 340, 359, 380),
-		GRADE_5=c(293, 324, 350, 369, 390),
-		GRADE_6=c(302, 334, 359, 379, 399),
-		GRADE_7=c(311, 342, 368, 386, 407),
-		GRADE_8=c(319, 350, 375, 394, 414),
-		GRADE_9=c(327, 357, 382, 400, 419),
-		GRADE_10=c(333, 363, 387, 405, 424),
-		GRADE_11=c(340, 368, 391, 409, 427),
-		GRADE_12=c(346, 372, 395, 413, 430)),
-	READING.2017=list(
+	# READING=list(
+	# 	GRADE_0=c(237, 263, 288, 307, 329),
+	# 	GRADE_1=c(249, 277, 303, 321, 344),
+	# 	GRADE_2=c(261, 290, 316, 335, 357),
+	# 	GRADE_3=c(272, 303, 328, 347, 369),
+	# 	GRADE_4=c(283, 314, 340, 359, 380),
+	# 	GRADE_5=c(293, 324, 350, 369, 390),
+	# 	GRADE_6=c(302, 334, 359, 379, 399),
+	# 	GRADE_7=c(311, 342, 368, 386, 407),
+	# 	GRADE_8=c(319, 350, 375, 394, 414),
+	# 	GRADE_9=c(327, 357, 382, 400, 419),
+	# 	GRADE_10=c(333, 363, 387, 405, 424),
+	# 	GRADE_11=c(340, 368, 391, 409, 427),
+	# 	GRADE_12=c(346, 372, 395, 413, 430)),
+	# READING.2017=list(
+	READING = list(
 		GRADE_0=c(229, 261, 293, 325, 350),
 		GRADE_1=c(242, 274, 315, 344, 368),
 		GRADE_2=c(254, 289, 329, 359, 383),
@@ -10475,7 +10514,22 @@ SGPstateData[["WIDA"]][["Achievement"]][["Cutscores"]] <- list(
 		GRADE_9=c(311, 344, 385, 418, 446),
 		GRADE_10=c(318, 350, 391, 424, 453),
 		GRADE_11=c(325, 356, 397, 429, 459),
-		GRADE_12=c(331, 362, 402, 434, 466)))
+		GRADE_12=c(331, 362, 402, 434, 466)),
+	READING.2026 = list(
+        GRADE_0  = c(213, 241, 269, 297, 601), # Add in '601' in place of NA
+        GRADE_1  = c(275, 308, 362, 388, 411),
+        GRADE_2  = c(278, 306, 357, 398, 429),
+        GRADE_3  = c(285, 318, 373, 415, 438),
+        GRADE_4  = c(288, 313, 359, 401, 434),
+        GRADE_5  = c(294, 320, 370, 412, 448),
+        GRADE_6  = c(315, 351, 408, 453, 483),
+        GRADE_7  = c(323, 360, 417, 464, 488),
+        GRADE_8  = c(330, 368, 425, 472, 492),
+        GRADE_9  = c(332, 374, 435, 477, 513),
+        GRADE_10 = c(341, 383, 443, 485, 517),
+        GRADE_11 = c(349, 392, 451, 492, 520),
+        GRADE_12 = c(357, 401, 457, 499, 525))
+)
 
 SGPstateData[["WIDA"]][["Achievement"]][["Levels"]] <- list(
 	Labels=c("L1", "L2", "L3", "L4", "L5", "L6"),
@@ -10499,12 +10553,13 @@ SGPstateData[["WIDA"]][["Assessment_Program_Information"]] <- list(
 		Contact="1-866-276-7735"),
 	Content_Areas="Reading",
 	Grades_Tested=c(0,1,2,3,4,5,6,7,8,9,10,11,12),
-	Assessment_Years=c("2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017"),
+	Scale_Change = list(READING = "2026"),
+	Assessment_Years = as.character(2017:2028),
 	Test_Season="Spring",
 	Test_Vendor="WIDA")
 
 SGPstateData[["WIDA"]][["Student_Report_Information"]] <- list(
-	Vertical_Scale=list(READING=TRUE),
+	Vertical_Scale=list(READING=FALSE),
 	Content_Areas_Labels=list(READING="Reading"),
 	Grades_Reported=list(READING=c(0,1,2,3,4,5,6,7,8,9,10,11,12)),
 	Achievement_Level_Labels=list(
@@ -10513,7 +10568,10 @@ SGPstateData[["WIDA"]][["Student_Report_Information"]] <- list(
 		"Developing"="L3",
 		"Expanding"="L4",
 		"Bridging"="L5",
-		"Reaching"="L6"))
+		"Reaching"="L6"),
+	Transformed_Achievement_Level_Cutscores = list(READING = 2017:2029),
+	Transformed_Achievement_Level_Cutscores_gaPlot = list(READING = 2017:2029)
+)
 
 widaACCESS_ss_to_pl <- source("Custom_Functions_Misc/WIDA/widaACCESS_ss_to_pl.R")
 widaACCESS_ss_old_to_ss_new <- source("Custom_Functions_Misc/WIDA/widaACCESS_ss_old_to_ss_new.R")
@@ -10528,6 +10586,73 @@ SGPstateData[["WIDA"]][["SGP_Configuration"]] <- list(
 	ss_to_pl_function=widaACCESS_ss_to_pl,
 	ss_old_to_ss_new_function=widaACCESS_ss_old_to_ss_new)
 
+SGPstateData[["WIDA"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <-
+    list(
+        Assessment_Abbreviation = "ACCESS 2.0",
+        # Assessment_Abbreviation.2017 = "ACCESS 2.0",
+        Assessment_Abbreviation.2026 = "ACCESS 3.0",
+        Assessment_Name = "ACCESS 2.0",
+        # Assessment_Name.2017 = "ACCESS 2.0",
+        Assessment_Name.2026 = "ACCESS 3.0",
+        Achievement_Levels = list(
+            Labels = c(
+                "WIDA Level 1", "WIDA Level 2", "WIDA Level 3",
+                "WIDA Level 4", "WIDA Level 5", "WIDA Level 6", "NO SCORE"),
+            Proficient = c(
+                "Not Proficient", "Not Proficient", "Not Proficient",
+                "Proficient", "Proficient", "Proficient", "Proficient", NA)),
+        # Achievement_Levels.2017 = list(
+        #     Labels = c(
+        #         "WIDA Level 1", "WIDA Level 2", "WIDA Level 3",
+        #         "WIDA Level 4", "WIDA Level 5", "WIDA Level 6", "NO SCORE"),
+        #     Proficient = c(
+        #         "Not Proficient", "Not Proficient", "Not Proficient",
+        #         "Proficient", "Proficient", "Proficient", "Proficient", NA)),
+        Achievement_Levels.2026 = list(
+            Labels = c(
+                "WIDA Level 1", "WIDA Level 2", "WIDA Level 3",
+                "WIDA Level 4", "WIDA Level 5", "WIDA Level 6", "NO SCORE"),
+            Proficient = c(
+                "Not Proficient", "Not Proficient", "Not Proficient",
+                "Proficient", "Proficient", "Proficient", "Proficient", NA)),
+        Achievement_Level_Labels = list(
+            "WIDA L1" = "WIDA Level 1",
+            "WIDA L2" = "WIDA Level 2",
+            "WIDA L3" = "WIDA Level 3",
+            "WIDA L4" = "WIDA Level 4",
+            "WIDA L5" = "WIDA Level 5",
+            "WIDA L6" = "WIDA Level 6"),
+        # Achievement_Level_Labels.2017 = list(
+        #     "WIDA L1" = "WIDA Level 1",
+        #     "WIDA L2" = "WIDA Level 2",
+        #     "WIDA L3" = "WIDA Level 3",
+        #     "WIDA L4" = "WIDA Level 4",
+        #     # "WIDA L4.2" = "WIDA Level 4.2",
+        #     "WIDA L5" = "WIDA Level 5",
+        #     "WIDA L6" = "WIDA Level 6"),
+        Achievement_Level_Labels.2026 = list(
+            "WIDA L1" = "WIDA Level 1",
+            "WIDA L2" = "WIDA Level 2",
+            "WIDA L3" = "WIDA Level 3",
+            "WIDA L4" = "WIDA Level 4",
+            "WIDA L5" = "WIDA Level 5",
+            "WIDA L6" = "WIDA Level 6"),
+        Content_Areas_Labels = list(READING = "Overall"),
+        # Content_Areas_Labels.2017 = list(READING = "Overall"),
+        Content_Areas_Labels.2026 = list(READING = "Overall"),
+        Vertical_Scale = "Yes", # "No",
+        # Vertical_Scale.2017 = "Yes",
+        Vertical_Scale.2026 = "Yes", # "No",
+        Grades_Tested = 0:12,
+        # Grades_Tested.2017 = 0:12,
+        Grades_Tested.2026 = 0:12,
+        # Year = "2017",
+        Year = "2026",
+        Equate_Method = "pre-equated",
+        Preequated_by_Contractor = TRUE,
+        Linkages = WIDA_Linkages_2026
+    )
+
 #load("Baseline_Coefficient_Matrices/WIDA/WIDA_Baseline_Matrices.Rdata")
 #SGPstateData[["WIDA"]][["Baseline_splineMatrix"]][["Coefficient_Matrices"]] <- WIDA_Baseline_Matrices
 #load("Baseline_Coefficient_Matrices/WIDA/WIDA_Cohort_Referenced_Matrices_2017.Rdata")
@@ -10538,43 +10663,50 @@ SGPstateData[["WIDA"]][["SGP_Configuration"]] <- list(
 ### WORLD CLASS INSTRUCTIONAL DESIGN and ASSESSMENT Colorado (ACCESS)
 ##########################################################################################
 
-load("Knots_Boundaries/WIDA_CO_Knots_Boundaries.Rdata")
-SGPstateData[["WIDA_CO"]][["Achievement"]][["Knots_Boundaries"]][["READING"]] <- SGPstateData[["CELA"]][["Achievement"]][["Knots_Boundaries"]][["CELA"]]
-SGPstateData[["WIDA_CO"]][["Achievement"]][["Knots_Boundaries"]][["READING.2013"]] <- SGPstateData[["WIDA"]][["Achievement"]][["Knots_Boundaries"]][["READING"]]
-SGPstateData[["WIDA_CO"]][["Achievement"]][["Knots_Boundaries"]][["READING.2016"]] <- SGPstateData[["WIDA"]][["Achievement"]][["Knots_Boundaries"]][["READING.2016"]]
-SGPstateData[["WIDA_CO"]][["Achievement"]][["Knots_Boundaries"]][["LITERACY"]] <- WIDA_CO_Knots_Boundaries[["LITERACY"]]
+# load("Knots_Boundaries/WIDA_CO_Knots_Boundaries.Rdata")
+# SGPstateData[["WIDA_CO"]][["Achievement"]][["Knots_Boundaries"]][["READING"]] <-
+    # SGPstateData[["CELA"]][["Achievement"]][["Knots_Boundaries"]][["CELA"]]
+# SGPstateData[["WIDA_CO"]][["Achievement"]][["Knots_Boundaries"]][["READING.2013"]] <-
+#     SGPstateData[["WIDA"]][["Achievement"]][["Knots_Boundaries"]][["READING"]]
+# SGPstateData[["WIDA_CO"]][["Achievement"]][["Knots_Boundaries"]][["READING.2016"]] <-
+#     SGPstateData[["WIDA"]][["Achievement"]][["Knots_Boundaries"]][["READING.2016"]]
+SGPstateData[["WIDA_CO"]][["Achievement"]][["Knots_Boundaries"]] <-
+    SGPstateData[["WIDA"]][["Achievement"]][["Knots_Boundaries"]]
+# SGPstateData[["WIDA_CO"]][["Achievement"]][["Knots_Boundaries"]][["LITERACY"]] <-
+    # WIDA_CO_Knots_Boundaries[["LITERACY"]]
 
-SGPstateData[["WIDA_CO"]][["Achievement"]][["Cutscores"]] <- list(
-	LITERACY = list(
-		GRADE_0 = c(238, 265, 295, 328, 350),
-		GRADE_1 = c(251, 281, 321, 349, 370),
-		GRADE_2 = c(263, 293, 334, 363, 383),
-		GRADE_3 = c(272, 303, 344, 373, 394),
-		GRADE_4 = c(287, 312, 353, 383, 404),
-		GRADE_5 = c(292, 319, 360, 390, 412),
-		GRADE_6 = c(296, 326, 367, 398, 420),
-		GRADE_7 = c(301, 333, 374, 404, 428),
-		GRADE_8 = c(308, 339, 379, 410, 436),
-		GRADE_9 = c(315, 346, 385, 416, 444),
-		GRADE_10 = c(321, 352, 391, 421, 451),
-		GRADE_11 = c(328, 359, 397, 426, 459),
-		GRADE_12 = c(335, 365, 403, 431, 467)),
-	READING = list(
-		GRADE_0 = c(382, 426, 451, 515),
-		GRADE_1 = c(411, 435, 469, 522),
-		GRADE_2 = c(431, 465, 491, 546),
-		GRADE_3 = c(445, 478, 509, 562),
-		GRADE_4 = c(458, 490, 526, 578),
-		GRADE_5 = c(460, 493, 533, 584),
-		GRADE_6 = c(463, 496, 539, 590),
-		GRADE_7 = c(465, 499, 546, 596),
-		GRADE_8 = c(469, 503, 549, 598),
-		GRADE_9 = c(473, 507, 551, 600),
-		GRADE_10 = c(477, 510, 553, 603),
-		GRADE_11 = c(481, 514, 556, 605),
-		GRADE_12 = c(485, 518, 559, 607)),
-	READING.2013 = SGPstateData[["WIDA"]][["Achievement"]][["Cutscores"]][["READING"]],
-	READING.2017 = SGPstateData[["WIDA"]][["Achievement"]][["Cutscores"]][["READING.2017"]])
+SGPstateData[["WIDA_CO"]][["Achievement"]][["Cutscores"]] <- #list(
+    SGPstateData[["WIDA"]][["Achievement"]][["Cutscores"]]
+	# LITERACY = list(
+	# 	GRADE_0 = c(238, 265, 295, 328, 350),
+	# 	GRADE_1 = c(251, 281, 321, 349, 370),
+	# 	GRADE_2 = c(263, 293, 334, 363, 383),
+	# 	GRADE_3 = c(272, 303, 344, 373, 394),
+	# 	GRADE_4 = c(287, 312, 353, 383, 404),
+	# 	GRADE_5 = c(292, 319, 360, 390, 412),
+	# 	GRADE_6 = c(296, 326, 367, 398, 420),
+	# 	GRADE_7 = c(301, 333, 374, 404, 428),
+	# 	GRADE_8 = c(308, 339, 379, 410, 436),
+	# 	GRADE_9 = c(315, 346, 385, 416, 444),
+	# 	GRADE_10 = c(321, 352, 391, 421, 451),
+	# 	GRADE_11 = c(328, 359, 397, 426, 459),
+	# 	GRADE_12 = c(335, 365, 403, 431, 467)),
+	# READING = list(
+	# 	GRADE_0 = c(382, 426, 451, 515),
+	# 	GRADE_1 = c(411, 435, 469, 522),
+	# 	GRADE_2 = c(431, 465, 491, 546),
+	# 	GRADE_3 = c(445, 478, 509, 562),
+	# 	GRADE_4 = c(458, 490, 526, 578),
+	# 	GRADE_5 = c(460, 493, 533, 584),
+	# 	GRADE_6 = c(463, 496, 539, 590),
+	# 	GRADE_7 = c(465, 499, 546, 596),
+	# 	GRADE_8 = c(469, 503, 549, 598),
+	# 	GRADE_9 = c(473, 507, 551, 600),
+	# 	GRADE_10 = c(477, 510, 553, 603),
+	# 	GRADE_11 = c(481, 514, 556, 605),
+	# 	GRADE_12 = c(485, 518, 559, 607)),
+	# READING.2013 = SGPstateData[["WIDA"]][["Achievement"]][["Cutscores"]][["READING"]],
+	# READING.2017 = SGPstateData[["WIDA"]][["Achievement"]][["Cutscores"]][["READING.2017"]])
 
 SGPstateData[["WIDA_CO"]][["Achievement"]][["Levels"]] <- list(
 	Labels = c("L1", "L2", "L3", "L4", "L5", "L6", "NO SCORE"),
@@ -10587,7 +10719,7 @@ SGPstateData[["WIDA_CO"]][["Growth"]][["Cutscores"]] <- list(
 	Cuts = c(35, 66),
 	Labels = c("1st-34th","35th-65th","66th-99th"))
 
-SGPstateData[["WIDA_CO"]][["Growth"]][["System_Type"]] <- "Cohort and Baseline Referenced"
+SGPstateData[["WIDA_CO"]][["Growth"]][["System_Type"]] <- "Cohort Referenced" # and Baseline
 
 SGPstateData[["WIDA_CO"]][["Assessment_Program_Information"]] <- list(
 	Assessment_Name = "WIDA ACCESS",
@@ -10597,29 +10729,29 @@ SGPstateData[["WIDA_CO"]][["Assessment_Program_Information"]] <- list(
 		Abbreviation = "CDE",
 		URL = "www.schoolview.org",
 		Contact = "303-866-6763"),
-#	Scale_Change = list(READING = "2013"),
-	Assessment_Years =
-		c("2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015",
-		  "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"),
-	Content_Areas = c("READING", "LITERACY"),
+	Scale_Change = list(READING = "2026"),
+	Assessment_Years = as.character(2017:2028),
+	Content_Areas = "READING", #c("READING", "LITERACY"),
 	Grades_Tested =  c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
 	Test_Season = "Spring")
 
 SGPstateData[["WIDA_CO"]][["Student_Report_Information"]] <- list(
 	sgPlot.year.span  =  3,
 	Grades_Reported = list(
-		READING = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
-		LITERACY = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)),
-	Vertical_Scale = list(READING = TRUE, LITERACY = TRUE),
-	Content_Areas_Labels = list(READING = "Overall", LITERACY = "Overall"),
-	Earliest_Year_Reported = list(READING = "2013", LITERACY = "2016"),
+		READING = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)),
+		# LITERACY = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)),
+	Vertical_Scale = list(READING = FALSE),  #  LITERACY = TRUE),
+	Content_Areas_Labels = list(READING = "Overall"), # LITERACY = "Overall"),
+	# Earliest_Year_Reported = list(READING = "2017"),  # LITERACY = "2016"),
 	Achievement_Level_Labels = list(
 		"Entering" = "L1",
 		"Emerging" = "L2",
 		"Developing" = "L3",
 		"Expanding" = "L4",
 		"Bridging" = "L5",
-		"Reaching" = "L6")#,
+		"Reaching" = "L6"),
+	Transformed_Achievement_Level_Cutscores = list(READING = 2017:2029),
+	Transformed_Achievement_Level_Cutscores_gaPlot = list(READING = 2017:2029)
     # Fan_Extra = c(
     #     ###   Patterns in fans use `gridpattern` package
     #     #   remotes::install_github("trevorld/gridpattern")
@@ -10637,15 +10769,62 @@ SGPstateData[["WIDA_CO"]][["Student_Report_Information"]] <- list(
     #         gp = gpar(fill = 'transparent'))")
 )
 
+SGPstateData[["WIDA_CO"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <-
+    list(
+        Assessment_Abbreviation = "ACCESS 2.0",
+        Assessment_Abbreviation.2026 = "ACCESS 3.0",
+        Assessment_Name = "ACCESS 2.0",
+        Assessment_Name.2026 = "ACCESS 3.0",
+        Achievement_Levels = list(
+            Labels = c(
+                "L1", "L2", "L3", "L4", "L5", "L6", "NO SCORE"),
+            Proficient = c(
+                "Not Proficient", "Not Proficient", "Not Proficient",
+                "Proficient", "Proficient", "Proficient", NA)),
+        Achievement_Levels.2026 = list(
+            Labels = c(
+                "L1", "L2", "L3", "L4", "L5", "L6", "NO SCORE"),
+            Proficient = c(
+                "Not Proficient", "Not Proficient", "Not Proficient",
+                "Proficient", "Proficient", "Proficient", NA)),
+        Achievement_Level_Labels = list(
+            "Entering" = "L1",
+            "Emerging" = "L2",
+            "Developing" = "L3",
+            "Expanding" = "L4",
+            "Bridging" = "L5",
+            "Reaching" = "L6"),
+        Achievement_Level_Labels.2026 = list(
+            "Entering" = "L1",
+            "Emerging" = "L2",
+            "Developing" = "L3",
+            "Expanding" = "L4",
+            "Bridging" = "L5",
+            "Reaching" = "L6"),
+        Content_Areas_Labels = list(READING = "Overall"), # , LITERACY = "Overall"),
+        Content_Areas_Labels.2026 = list(READING = "Overall"),# , LITERACY = "Overall"),
+        Vertical_Scale = "Yes", # "No",
+        Vertical_Scale.2026 = "Yes", # "No",
+        Grades_Tested = 0:12,
+        Grades_Tested.2026 = 0:12,
+        Year = "2026",
+        Equate_Method = "pre-equated",
+        Preequated_by_Contractor = TRUE,
+        Linkages = WIDA_Linkages_2026
+    )
 
-SGPstateData[["WIDA_CO"]][["Variable_Name_Lookup"]] <- read.csv("Variable_Name_Lookup/WIDA_CO_Variable_Name_Lookup.csv", colClasses = c(rep("character",4), "logical"))
+
+SGPstateData[["WIDA_CO"]][["Variable_Name_Lookup"]] <-
+    read.csv("Variable_Name_Lookup/WIDA_CO_Variable_Name_Lookup.csv",
+	        colClasses = c(rep("character",4), "logical"))
 
 SGPstateData[["WIDA_CO"]][["SGP_Configuration"]] <- list(
 	max.order.for.percentile = 3,
 	sgp.minimum.default.panel.years = 2,
 #	arrow.legend.color = c("#FD5050", "#FDBF1A", "#07B806"), ##OLD RED/YELLOW/GREEN
 	arrow.legend.color = c("#CC79A7", "#F0E442", "#56B4E9"), ##COLOR-BLIND COLORS
-    sgp.target.types = c("Scale_Score_Targets_CUKU", "Scale_Score_Targets_Current_CUKU"))
+    sgp.target.types = c("Scale_Score_Targets_CUKU", "Scale_Score_Targets_Current_CUKU"),#)
+	sgPlot.plot.test.transition = TRUE)
     # sgPlot.sgp.targets = c("sgp.projections", "sgp.projections.lagged"),
 	# sgPlot.sgp.targets = "CUSTOM",
 	# sgp.target.types = c("Scale_Score_Targets_CUSTOM", "Scale_Score_Targets_Current_CUSTOM"))
@@ -10701,13 +10880,15 @@ SGPstateData[["WIDA_CO"]][["Custom_Student_Report"]] <- list(
 SGPstateData[["WIDA_CO_SPANISH"]] <- SGPstateData[["WIDA_CO"]]
 SGPstateData[["WIDA_CO_SPANISH"]][["Growth"]][["Levels"]] <- c("Bajo", "T\u{ED}pico", "Alto")
 SGPstateData[["WIDA_CO_SPANISH"]][["SGP_Configuration"]]  <- SGPstateData[["WIDA_CO"]][["SGP_Configuration"]]
+SGPstateData[["WIDA_CO_SPANISH"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <-
+    SGPstateData[["WIDA_CO"]][["Assessment_Program_Information"]][["Assessment_Transition"]]
 
 SGPstateData[["WIDA_CO_SPANISH"]][["Student_Report_Information"]] <- list(
 	sgPlot.year.span = 3,
 	Grades_Reported = list(READING = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)),
 	Vertical_Scale = list(READING = TRUE),
 	Content_Areas_Labels = list(READING = "Calificaci\u{F3}n General"),
-	Earliest_Year_Reported = list(READING = "2013"),
+	Earliest_Year_Reported = list(READING = "2017"),
 	Achievement_Level_Labels = list(
 		"Inicial" = "L1",
 		"En Transici\u{F3}n" = "L2",
@@ -10729,6 +10910,23 @@ SGPstateData[["WIDA_CO_SPANISH"]][["Student_Report_Information"]] <- list(
     #         size = 0.1, colour = 'grey50', alpha = 0.45, spacing = 0.05, angle = 20,
     #         gp = gpar(fill = 'transparent'))")
 )
+
+SGPstateData[["WIDA_CO_SPANISH"]][["Assessment_Program_Information"]][[
+    "Assessment_Transition"]][["Achievement_Level_Labels"]] <-
+SGPstateData[["WIDA_CO_SPANISH"]][["Assessment_Program_Information"]][[
+    "Assessment_Transition"]][["Achievement_Level_Labels.2026"]] <-
+        list("Inicial" = "L1",
+            "En Transici\u{F3}n" = "L2",
+            "Desarrollado" = "L3",
+            "Elevado" = "L4",
+            "Apto" = "L5",
+            "Avanzado" = "L6")
+
+SGPstateData[["WIDA_CO_SPANISH"]][["Assessment_Program_Information"]][[
+    "Assessment_Transition"]][["Content_Areas_Labels"]] <-
+SGPstateData[["WIDA_CO_SPANISH"]][["Assessment_Program_Information"]][[
+    "Assessment_Transition"]][["Content_Areas_Labels.2026"]] <-
+        list(READING = "Calificaci\u{F3}n General")
 
 
 ##########################################################################################
