@@ -10516,6 +10516,7 @@ SGPstateData[["WIDA"]][["Student_Report_Information"]] <- list(
 		"Reaching"="L6"))
 
 widaACCESS_ss_to_pl <- source("Custom_Functions_Misc/WIDA/widaACCESS_ss_to_pl.R")
+widaACCESS_ss_old_to_ss_new <- source("Custom_Functions_Misc/WIDA/widaACCESS_ss_old_to_ss_new.R")
 SGPstateData[["WIDA"]][["SGP_Configuration"]] <- list(
 	max.order.for.percentile=2,
 	max.order.for.projection=2,
@@ -10524,7 +10525,8 @@ SGPstateData[["WIDA"]][["SGP_Configuration"]] <- list(
 	sgp.projections.max.forward.progression.years=7,
 	return.norm.group.scale.scores=TRUE,
 	sgp.target.types=c("Scale_Score_Targets_CUKU", "Scale_Score_Targets_Current_CUKU"),
-	ss_to_pl_function=widaACCESS_ss_to_pl)
+	ss_to_pl_function=widaACCESS_ss_to_pl,
+	ss_old_to_ss_new_function=widaACCESS_ss_old_to_ss_new)
 
 #load("Baseline_Coefficient_Matrices/WIDA/WIDA_Baseline_Matrices.Rdata")
 #SGPstateData[["WIDA"]][["Baseline_splineMatrix"]][["Coefficient_Matrices"]] <- WIDA_Baseline_Matrices
