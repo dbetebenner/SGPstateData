@@ -10574,6 +10574,7 @@ SGPstateData[["WIDA"]][["Student_Report_Information"]] <- list(
 )
 
 widaACCESS_ss_to_pl <- source("Custom_Functions_Misc/WIDA/widaACCESS_ss_to_pl.R")
+widaACCESS_2026_scale_score_transformation <- source("Custom_Functions_Misc/WIDA/widaACCESS_2026_scale_score_transformation.R")
 SGPstateData[["WIDA"]][["SGP_Configuration"]] <- list(
 	max.order.for.percentile=2,
 	max.order.for.projection=2,
@@ -10582,7 +10583,8 @@ SGPstateData[["WIDA"]][["SGP_Configuration"]] <- list(
 	sgp.projections.max.forward.progression.years=7,
 	return.norm.group.scale.scores=TRUE,
 	sgp.target.types=c("Scale_Score_Targets_CUKU", "Scale_Score_Targets_Current_CUKU"),
-	ss_to_pl_function=widaACCESS_ss_to_pl)
+	ss_to_pl_function=widaACCESS_ss_to_pl,
+	ss_2026_scale_score_transformation_function=widaACCESS_2026_scale_score_transformation)
 
 SGPstateData[["WIDA"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <-
     list(
