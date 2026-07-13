@@ -1918,7 +1918,7 @@ SGPstateData[["CO"]][['SGP_Progression_Preference']] <-
 
   talc.dates <-
     c("2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024",
-	  "2025", "2026", "2027", "2027", "2029")
+	  "2025", "2026", "2027", "2028", "2029", "2030")
 
   SGPstateData[["CO"]][["Student_Report_Information"]] = list(
       Include_Front_Page_in_School_Catalog = FALSE,
@@ -10483,7 +10483,7 @@ WIDA_Linkages_2026 <-
 SGPstateData[["WIDA"]][["Achievement"]][["Knots_Boundaries"]][["READING"]] <-
     WIDA_Knots_Boundaries[["READING.2016"]]
 SGPstateData[["WIDA"]][["Achievement"]][["Knots_Boundaries"]][["READING.2026"]] <-
-      WIDA_Equated_Knots_Bounds
+      WIDA_Equated_Knots_Bounds  ##  NOTE:  TEMPORARY -- only for 2026 transition year before new standards have been set
 
 SGPstateData[["WIDA"]][["Achievement"]][["Cutscores"]] <- list(
 	# READING=list(
@@ -10515,7 +10515,7 @@ SGPstateData[["WIDA"]][["Achievement"]][["Cutscores"]] <- list(
 		GRADE_10=c(318, 350, 391, 424, 453),
 		GRADE_11=c(325, 356, 397, 429, 459),
 		GRADE_12=c(331, 362, 402, 434, 466)),
-	READING.2026 = list(
+	READING.2026 = list(  ##  NOTE:  TEMPORARY -- only for 2026 transition year before new standards have been set
         GRADE_0  = c(213, 241, 269, 297, 601), # Add in '601' in place of NA
         GRADE_1  = c(275, 308, 362, 388, 411),
         GRADE_2  = c(278, 306, 357, 398, 429),
@@ -10574,7 +10574,7 @@ SGPstateData[["WIDA"]][["Student_Report_Information"]] <- list(
 )
 
 widaACCESS_ss_to_pl <- source("Custom_Functions_Misc/WIDA/widaACCESS_ss_to_pl.R")
-widaACCESS_ss_old_to_ss_new <- source("Custom_Functions_Misc/WIDA/widaACCESS_ss_old_to_ss_new.R")
+widaACCESS_2026_scale_score_transformation <- source("Custom_Functions_Misc/WIDA/widaACCESS_2026_scale_score_transformation.R")
 SGPstateData[["WIDA"]][["SGP_Configuration"]] <- list(
 	max.order.for.percentile=2,
 	max.order.for.projection=2,
@@ -10584,7 +10584,7 @@ SGPstateData[["WIDA"]][["SGP_Configuration"]] <- list(
 	return.norm.group.scale.scores=TRUE,
 	sgp.target.types=c("Scale_Score_Targets_CUKU", "Scale_Score_Targets_Current_CUKU"),
 	ss_to_pl_function=widaACCESS_ss_to_pl,
-	ss_old_to_ss_new_function=widaACCESS_ss_old_to_ss_new)
+	ss_2026_scale_score_transformation_function=widaACCESS_2026_scale_score_transformation)
 
 SGPstateData[["WIDA"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <-
     list(
@@ -10727,19 +10727,19 @@ SGPstateData[["WIDA_CO"]][["Assessment_Program_Information"]] <- list(
 	Organization = list(
 		Name = "Colorado Department of Education",
 		Abbreviation = "CDE",
-		URL = "www.schoolview.org",
+		URL = "https://ed.cde.state.co.us/accountability/stateaccountability",
 		Contact = "303-866-6763"),
 	Scale_Change = list(READING = "2026"),
 	Assessment_Years = as.character(2017:2028),
 	Content_Areas = "READING", #c("READING", "LITERACY"),
-	Grades_Tested =  c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+	Grades_Tested =  0:12,
 	Test_Season = "Spring")
 
 SGPstateData[["WIDA_CO"]][["Student_Report_Information"]] <- list(
 	sgPlot.year.span  =  3,
 	Grades_Reported = list(
-		READING = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)),
-		# LITERACY = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)),
+		READING = 0:12),
+		# LITERACY = 0:12),
 	Vertical_Scale = list(READING = FALSE),  #  LITERACY = TRUE),
 	Content_Areas_Labels = list(READING = "Overall"), # LITERACY = "Overall"),
 	# Earliest_Year_Reported = list(READING = "2017"),  # LITERACY = "2016"),
@@ -10885,7 +10885,7 @@ SGPstateData[["WIDA_CO_SPANISH"]][["Assessment_Program_Information"]][["Assessme
 
 SGPstateData[["WIDA_CO_SPANISH"]][["Student_Report_Information"]] <- list(
 	sgPlot.year.span = 3,
-	Grades_Reported = list(READING = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)),
+	Grades_Reported = list(READING = 0:12),
 	Vertical_Scale = list(READING = TRUE),
 	Content_Areas_Labels = list(READING = "Calificaci\u{F3}n General"),
 	Earliest_Year_Reported = list(READING = "2017"),
@@ -11020,23 +11020,41 @@ SGPstateData[["WIDA_DPS"]][["SGP_Configuration"]] <- list(
 ### WORLD CLASS INSTRUCTIONAL DESIGN and ASSESSMENT (WIDA) GEORGIA
 ##########################################################################################
 
-SGPstateData[["WIDA_GA"]][["Achievement"]][["Knots_Boundaries"]] <- WIDA_Knots_Boundaries
+SGPstateData[["WIDA_GA"]][["Achievement"]][["Knots_Boundaries"]] <-
+    SGPstateData[["WIDA"]][["Achievement"]][["Knots_Boundaries"]]
+
+# SGPstateData[["WIDA_GA"]][["Achievement"]][["Knots_Boundaries"]] <- WIDA_Knots_Boundaries
 
 SGPstateData[["WIDA_GA"]][["Achievement"]][["Cutscores"]] <- list(
-	READING=list(
-		GRADE_0 = c(229, 261, 293, 303, 325, 350),
-		GRADE_1 = c(242, 274, 315, 324, 344, 368),
-		GRADE_2 = c(254, 289, 329, 338, 359, 383),
-		GRADE_3 = c(265, 300, 340, 350, 371, 396),
-		GRADE_4 = c(279, 309, 350, 360, 382, 406),
-		GRADE_5 = c(286, 317, 358, 368, 390, 415),
-		GRADE_6 = c(291, 324, 365, 376, 399, 423),
-		GRADE_7 = c(298, 331, 372, 383, 406, 431),
-		GRADE_8 = c(304, 337, 378, 389, 412, 438),
-		GRADE_9 = c(311, 344, 385, 395, 418, 446),
-		GRADE_10= c(318, 350, 391, 401, 424, 453),
-		GRADE_11= c(325, 356, 397, 407, 429, 459),
-		GRADE_12= c(331, 362, 402, 412, 434, 466)))
+    READING = list(
+        GRADE_0  = c(229, 261, 293, 303, 325, 350),
+        GRADE_1  = c(242, 274, 315, 324, 344, 368),
+        GRADE_2  = c(254, 289, 329, 338, 359, 383),
+        GRADE_3  = c(265, 300, 340, 350, 371, 396),
+        GRADE_4  = c(279, 309, 350, 360, 382, 406),
+        GRADE_5  = c(286, 317, 358, 368, 390, 415),
+        GRADE_6  = c(291, 324, 365, 376, 399, 423),
+        GRADE_7  = c(298, 331, 372, 383, 406, 431),
+        GRADE_8  = c(304, 337, 378, 389, 412, 438),
+        GRADE_9  = c(311, 344, 385, 395, 418, 446),
+        GRADE_10 = c(318, 350, 391, 401, 424, 453),
+        GRADE_11 = c(325, 356, 397, 407, 429, 459),
+        GRADE_12 = c(331, 362, 402, 412, 434, 466)),
+	READING.2026 = list(  ##  NOTE:  TEMPORARY -- only for 2026 transition year before new standards have been set
+        GRADE_0  = c(213, 241, 269, 278, 297, 601),
+        GRADE_1  = c(275, 308, 362, 369, 388, 411),
+        GRADE_2  = c(278, 306, 357, 370, 398, 429),
+        GRADE_3  = c(285, 318, 373, 386, 415, 438),
+        GRADE_4  = c(288, 313, 359, 373, 401, 434),
+        GRADE_5  = c(294, 320, 370, 384, 412, 448),
+        GRADE_6  = c(315, 351, 408, 422, 453, 483),
+        GRADE_7  = c(323, 360, 417, 432, 464, 488),
+        GRADE_8  = c(330, 368, 425, 439, 472, 492),
+        GRADE_9  = c(332, 374, 435, 448, 477, 513),
+        GRADE_10 = c(341, 383, 443, 456, 485, 517),
+        GRADE_11 = c(349, 392, 451, 464, 492, 520),
+        GRADE_12 = c(357, 401, 457, 470, 499, 525))
+	)
 
 SGPstateData[["WIDA_GA"]][["Achievement"]][["Levels"]] <- list(
 	Labels = c("Level 1", "Level 2", "Level 3", "Level 4", "Level 4.3", "Level 5", "Level 6", "NO SCORE"),
@@ -11049,7 +11067,7 @@ SGPstateData[["WIDA_GA"]][["Growth"]][["Cutscores"]] <- list(
 	Cuts = c(35, 66),
 	Labels = c("1st-34th", "35th-65th", "66th-99th"))
 
-SGPstateData[["WIDA_GA"]][["Growth"]][["System_Type"]] <- "Cohort and Baseline Referenced"
+SGPstateData[["WIDA_GA"]][["Growth"]][["System_Type"]] <- "Cohort Referenced" # and Baseline
 
 SGPstateData[["WIDA_GA"]][["Assessment_Program_Information"]] <- list(
 	Assessment_Name = "World Class Instructional Design and Assessment",
@@ -11059,15 +11077,16 @@ SGPstateData[["WIDA_GA"]][["Assessment_Program_Information"]] <- list(
 		Abbreviation = "GaDOE",
 		URL = "https://www.gadoe.org"),
 	Content_Areas = "Reading",
-	Grades_Tested = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
-	Assessment_Years = c("2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026"),
+	Grades_Tested = 0:12,
+	Assessment_Years = c("2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028"),
+	Scale_Change = list(READING = "2026"),
 	Test_Season = "Spring",
 	Test_Vendor = "WIDA")
 
 SGPstateData[["WIDA_GA"]][["Student_Report_Information"]] <- list(
 	sgPlot.year.span = 3,
 	Vertical_Scale = list(READING = TRUE),
-	Grades_Reported = list(READING = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)),
+	Grades_Reported = list(READING = 0:12),
 	Content_Areas_Labels = list(READING = "Overall Composite"),
 	Content_Area_in_Legend = FALSE,
 	Legend_Extra = c(
@@ -11090,16 +11109,19 @@ SGPstateData[["WIDA_GA"]][["Student_Report_Information"]] <- list(
     #         gp = gpar(fill = 'transparent'))"
     # ),
 	Achievement_Level_Labels = list(
-		"Level 1 Entering" = "Level 1",
-		"Level 2 Emerging" = "Level 2",
-		"Level 3 Developing" = "Level 3",
-		"Level 4 Expanding" = "Level 4",
-		"Level 4 Expanding" = "Level 4.3", # Collapse state minimum exit criteria (used for projections, but not shown in ISRs)
-		"Level 5 Bridging" = "Level 5",
-		"Level 6 Reaching" = "Level 6"),
+        "Level 1 Entering" = "Level 1",
+        "Level 2 Emerging" = "Level 2",
+        "Level 3 Developing" = "Level 3",
+        "Level 4 Expanding" = "Level 4",
+        "Level 4 Expanding" = "Level 4.3", # Collapse state minimum exit criteria (used for projections, but not shown in ISRs)
+        "Level 5 Bridging" = "Level 5",
+        "Level 6 Reaching" = "Level 6"),
+	# Transformed_Achievement_Level_Cutscores = list(READING = "2026"), # maybe use after 2026 scale changes?
+	# Transformed_Achievement_Level_Cutscores_gaPlot = list(READING = "2026"),
 	file_remove_pattern = "",
     catalog_name = 
-		"file.path(sgPlot.folder, year_folder, 'All_Schools', paste(i, j, gsub('/', '-', tmp_school_name), 'ACCESS_SGP', year_folder, 'ISR.pdf', sep = '_'))")
+		"file.path(sgPlot.folder, year_folder, 'All_Schools', paste(i, j, gsub('/', '-', tmp_school_name), 'ACCESS_SGP', year_folder, 'ISR.pdf', sep = '_'))"
+)
 
 SGPstateData[["WIDA_GA"]][["SGP_Configuration"]] <- list(
 	max.order.for.percentile = 2,
@@ -11111,10 +11133,11 @@ SGPstateData[["WIDA_GA"]][["SGP_Configuration"]] <- list(
 	print.other.gp = TRUE,
 	print.sgp.order = TRUE,
 	projcuts.digits = 0,
-	percentile.cuts = c(1, 35, 50, 65 ,99),
-	lagged.percentile.trajectory.values = c(1, 35, 50, 65 ,99),
+	percentile.cuts = c(1, 35, 50, 65, 99),
+	lagged.percentile.trajectory.values = c(1, 35, 50, 65, 99),
 	arrow.legend.color = c("#0066B2", "#E20177", "#4A8D29"), # c("#D6F9D1", "#4A8D29", "#1A4A0A"), # "#ECF9C1", "#AFD622", "#4D6308" # MB email 5/11/22
-	sgPlot.fan.condition = "head(Achievement_Levels, 1) %in% paste('Level', 1:4)")#,
+	sgPlot.fan.condition = "!grepl('Bridging|Reaching', head(Achievement_Levels, 1))"
+)
 	# sgPlot.sgp.targets = c("sgp.projections.baseline", "sgp.projections.lagged.baseline"),
     # sgPlot.sgp.targets = c("sgp.projections", "sgp.projections.lagged"),
 	# sgPlot.sgp.targets.timeframe = 5,
@@ -11122,8 +11145,55 @@ SGPstateData[["WIDA_GA"]][["SGP_Configuration"]] <- list(
 
 #SGPstateData[["WIDA_GA"]][["Baseline_splineMatrix"]][["Coefficient_Matrices"]] <- WIDA_Baseline_Matrices
 
+SGPstateData[["WIDA_GA"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <- list(
+    Assessment_Abbreviation = "ACCESS 2.0",
+    Assessment_Abbreviation.2026 = "ACCESS 3.0",
+    Assessment_Name = "ACCESS 2.0",
+    Assessment_Name.2026 = "ACCESS 3.0",
+    Achievement_Levels = list(
+        Labels = c(
+            "Level 1", "Level 2", "Level 3", "Level 4",
+            "Level 4.3", "Level 5", "Level 6", "NO SCORE"),
+        Proficient = c(
+            "Not Proficient", "Not Proficient", "Not Proficient", "Not Proficient",
+            "Proficient", "Proficient", "Proficient", NA)),
+    Achievement_Levels.2026 = list(
+        Labels = c(
+            "Level 1", "Level 2", "Level 3", "Level 4",
+            "Level 4.3", "Level 5", "Level 6", "NO SCORE"),
+        Proficient = c(
+            "Not Proficient", "Not Proficient", "Not Proficient", "Not Proficient",
+            "Proficient", "Proficient", "Proficient", NA)),
+    Achievement_Level_Labels = list(
+        "Level 1 Entering"   = "Level 1",
+        "Level 2 Emerging"   = "Level 2",
+        "Level 3 Developing" = "Level 3",
+        "Level 4 Expanding"  = "Level 4",
+        "Level 4 Expanding"  = "Level 4.3", # Collapse state minimum exit criteria (used for projections, but not shown in ISRs)
+        "Level 5 Bridging"   = "Level 5",
+        "Level 6 Reaching"   = "Level 6"),
+    Achievement_Level_Labels.2026 = list(
+        "Level 1 Entering"   = "Level 1",
+        "Level 2 Emerging"   = "Level 2",
+        "Level 3 Developing" = "Level 3",
+        "Level 4 Expanding"  = "Level 4",
+        "Level 4 Expanding"  = "Level 4.3", # Collapse state minimum exit criteria (used for projections, but not shown in ISRs)
+        "Level 5 Bridging"   = "Level 5",
+        "Level 6 Reaching"   = "Level 6"),
+    Content_Areas_Labels = list(READING = "Overall Composite"),
+    Content_Areas_Labels.2026 = list(READING = "Overall Composite"),
+    Vertical_Scale = "Yes",
+    Vertical_Scale.2026 = "No",
+    Grades_Tested = 0:12,
+    Grades_Tested.2026 = 0:12,
+    Year = "2026",
+    Equate_Method = "pre-equated",
+    Preequated_by_Contractor = TRUE,
+    Linkages = WIDA_Linkages_2026
+)
+
 ##  Custom ISR Meta Data
-source('Custom_ISR/WIDA_GA/WIDA_GA_Custom_ISR-text.R')
+source('Custom_ISR/WIDA_GA/WIDA_GA_Custom_ISR-text-2026.R')
 WIDA_GA_Custom_ISR_Function <- source('Custom_ISR/WIDA_GA/WIDA_GA_Custom_ISR-function.R')
 
 GaDOE_img <- png::readPNG("Custom_ISR/WIDA_GA/GaDOE.png") # , native = T)
@@ -11143,13 +11213,13 @@ SGPstateData[["WIDA_GA"]][["Custom_Student_Report"]] <- list(
 		achievement_level.label = "Proficiency Level",
 		# achievement_target.label = "Proficiency Target", # commented out code in this section only used if target scale scores shown
 		growth.label = "Growth",
-		growth_percentile.label = "Growth Percentile",
 		growth_level.label = "Growth Level",
+		growth_percentile.label = "Growth Percentile",
 		# growth_target.label = "Growth Target",
 		level.label = "Level",
+		grade.label = "Grade",
 		percentiles.label = "Percentiles",
-		scale_score.label = "Scale Score",
-		grade.label = "Grade"
+		scale_score.label = "Scale Score"
 		# CU.label = "Catch Up",
 		# KU.label = "Keep Up",
 		# MU.label = "Move Up",
@@ -11164,9 +11234,10 @@ SGPstateData[["WIDA_GA"]][["Custom_Student_Report"]] <- list(
 		system.name   = "System Name:",
 		school.name   = "School Name:"
 	),
-	Report_Title = "Student English Language Proficiency Growth Report 2025",
+	Report_Title = "Student English Language Proficiency Growth Report 2026",
 	Report_Text = Report_Text_ENGLISH,
 	Report_Logo = GaDOE_img,
+    Report_Text_Size = 0.8,
 	Grid_Objects = list(
 		report.vp = viewport(layout = grid.layout(13, 6, widths = unit(c(0.55, 0.1, 2.65, 3.5, 1.35, 0.35), rep("inches", 6)), # , 1.9, 4.0
 			heights = unit(c(0.15, 0.175, 0.175, 0.175, 0.25, 0.0625, 0.025, 5.75, 0.05, 0.025, 0.0625, 3.75, 0.35), rep("inches", 13)))),
@@ -11193,7 +11264,6 @@ SGPstateData[["WIDA_GA"]][["Custom_Student_Report"]] <- list(
 )
 
 #  Spanish ISR Version Info:
-
 SGPstateData[["WIDA_GA_SPANISH"]] <- SGPstateData[["WIDA_GA"]]
 SGPstateData[["WIDA_GA_SPANISH"]][["Growth"]][["Levels"]] <- c("Menor", "T\u{ED}pico", "Major")
 SGPstateData[["WIDA_GA_SPANISH"]][["SGP_Configuration"]]  <- SGPstateData[["WIDA_GA"]][["SGP_Configuration"]]
@@ -11204,13 +11274,13 @@ SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Language"]] <- li
     achievement_level.label = "Nivel de competencia",
     # achievement_target.label = "Meta de Competencia", # commented out - only used if target scale scores shown
     growth.label = "Desarrollo",
-    growth_percentile.label = "Percentil de desarrollo",
     growth_level.label = "Nivel de desarrollo",
+    growth_percentile.label = "Percentil de desarrollo",
     # growth_target.label = "Meta de Desarrollo",
     level.label = "Niveles",
+    grade.label = "Grado escolar",
     percentiles.label = "Percentiles",
-    scale_score.label = "Puntaje\npor escala",
-    grade.label = "Grado escolar")
+    scale_score.label = "Puntaje\npor escala")
     # CU.label = "Alcanzar",
     # KU.label = "Guadar",
     # MU.label = "Avanzar",
@@ -11229,12 +11299,13 @@ SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Student_Info"]] <
 SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Zero_to_K"]] <- "J"
 SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Font_Family"]] <- "Helvetica-Narrow"
 SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Report_Text"]] <- Report_Text_SPANISH
+SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Report_Text_Size"]] <- 0.785
 SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Report_Title"]] <- 
-                "Reporte estudiantil sobre el desarrollo ling\u{FC}\u{ED}stico en ingl\u{E9}s, 2025"
+                "Reporte estudiantil sobre el desarrollo ling\u{FC}\u{ED}stico en ingl\u{E9}s, 2026"
 
 SGPstateData[["WIDA_GA_SPANISH"]][["Student_Report_Information"]] <- list(
 	sgPlot.year.span = 3,
-	Grades_Reported = list(READING = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)),
+	Grades_Reported = list(READING = 0:12),
 	Vertical_Scale = list(READING = TRUE),
 	Content_Areas_Labels = list(READING = "Conjunto"),
 	Content_Area_in_Legend = FALSE,
@@ -11267,8 +11338,29 @@ SGPstateData[["WIDA_GA_SPANISH"]][["Student_Report_Information"]] <- list(
 		"6-Nivel de trascendencia" = "Level 6"),
 	file_remove_pattern = "",
     catalog_name = 
-		"file.path(sgPlot.folder, year_folder, 'All_Schools', paste(i, j, gsub('/', '-', tmp_school_name), 'ACCESS_SGP', year_folder, 'ISR.pdf', sep = '_'))")
-	
+		"file.path(sgPlot.folder, year_folder, 'All_Schools', paste(i, j, gsub('/', '-', tmp_school_name), 'ACCESS_SGP', year_folder, 'ISR.pdf', sep = '_'))"
+)
+
+SGPstateData[["WIDA_GA_SPANISH"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <-
+    SGPstateData[["WIDA_GA"]][["Assessment_Program_Information"]][["Assessment_Transition"]]
+
+SGPstateData[["WIDA_GA_SPANISH"]][["Assessment_Program_Information"]][[
+    "Assessment_Transition"]][["Achievement_Level_Labels"]] <-
+SGPstateData[["WIDA_GA_SPANISH"]][["Assessment_Program_Information"]][[
+    "Assessment_Transition"]][["Achievement_Level_Labels.2026"]] <- list(
+        "1-Nivel de entrada"             = "Level 1",
+        "2-Nivel emergente"              = "Level 2",
+        "3-Nivel de desarrollo"          = "Level 3",
+        "4-Nivel de extensi\u{F3}n"      = "Level 4",
+        "4-Nivel de extensi\u{F3}n"      = "Level 4.3",
+        "5-Nivel de transformaci\u{F3}n" = "Level 5",
+        "6-Nivel de trascendencia"       = "Level 6")
+
+SGPstateData[["WIDA_GA_SPANISH"]][["Assessment_Program_Information"]][[
+    "Assessment_Transition"]][["Content_Areas_Labels"]] <-
+SGPstateData[["WIDA_GA_SPANISH"]][["Assessment_Program_Information"]][[
+    "Assessment_Transition"]][["Content_Areas_Labels.2026"]] <-
+        list(READING = "Conjunto")
 
 ##########################################################################################
 ### WORLD CLASS INSTRUCTIONAL DESIGN and ASSESSMENT (WIDA) HAWAII
@@ -11589,11 +11681,11 @@ SGPstateData[["WIDA_MA"]][["Assessment_Program_Information"]] <- list(
 #	Scale_Change=list(READING="2016"),
 	Assessment_Years=c("2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"),
 	Content_Areas="READING",
-	Grades_Tested= c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+	Grades_Tested= 0:12,
 	Test_Season="Spring")
 
 SGPstateData[["WIDA_MA"]][["Student_Report_Information"]] <- list(
-	Grades_Reported=list(READING=c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)),
+	Grades_Reported=list(READING=0:12),
 	Vertical_Scale=list(READING=TRUE),
 	Content_Areas_Labels=list(READING = "Overall"),
 	Achievement_Level_Labels=list(
@@ -11729,12 +11821,12 @@ SGPstateData[["WIDA_MI"]][["Assessment_Program_Information"]] <- list(
 #	Scale_Change=list(READING="2014"),
 	Assessment_Years=c("2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021"),
 	Content_Areas="READING",
-	Grades_Tested= c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+	Grades_Tested= 0:12,
 	Test_Season="Spring",
 	CSEM="CSEM")
 
 SGPstateData[["WIDA_MI"]][["Student_Report_Information"]] <- list(
-	Grades_Reported=list(READING=c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)),
+	Grades_Reported=list(READING=0:12),
 	Vertical_Scale=list(READING=TRUE),
 	Content_Areas_Labels=list(READING = "Overall"),
 	Achievement_Level_Labels=list(
@@ -12000,7 +12092,7 @@ SGPstateData[["WIDA_NH_SPANISH"]][["SGP_Configuration"]]  <- SGPstateData[["WIDA
 
 SGPstateData[["WIDA_NH_SPANISH"]][["Student_Report_Information"]] <- list(
   	sgPlot.year.span = 3,
-  	Grades_Reported=list(READING=c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)),
+  	Grades_Reported=list(READING=0:12),
   	Vertical_Scale=list(READING=TRUE),
   	Content_Areas_Labels=list(READING = "Calificaci\u{F3}n General"),
   	Earliest_Year_Reported=list(READING = '2013'),

@@ -51,57 +51,20 @@
             NY3 = as.numeric(subset(tmp_student_data,
             select = intersect(grep(trajectory.cuts, names(tmp_student_data)),
                                 grep("YEAR_3_CURRENT_TRANSFORMED", names(tmp_student_data)))))),
-        # SGP_Targets = list(
-        #     CUKU = tmp_student_data[[paste(paste(my.sgp.target.label[1], my.sgp.target.label[2], sep = "_"), last.year, sep = ".")]],
-        #     CUKU_Current = tmp_student_data[[paste(paste(my.sgp.target.label[1], my.sgp.target.label[2], "CURRENT", sep = "_"), last.year, sep = ".")]],
-        #     MUSU = tmp_student_data[[paste(paste(my.sgp.target.label[1], "MOVE_UP_STAY_UP", my.sgp.target.label[2], sep = "_"), last.year, sep = ".")]],
-        #     MUSU_Current = tmp_student_data[[paste(paste(my.sgp.target.label[1], "MOVE_UP_STAY_UP", my.sgp.target.label[2], "CURRENT", sep = "_"), last.year, sep = ".")]]),
-        # SGP_Scale_Score_Targets = list(
-        #     CUKU = list(
-        #     NY1 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], my.sgp.target.label[2], "PROJ_YEAR_1", sep = "_")]]),
-        #     NY2 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], my.sgp.target.label[2], "PROJ_YEAR_2", sep = "_")]]),
-        #     NY3 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], my.sgp.target.label[2], "PROJ_YEAR_3", sep = "_")]])),
-        #     MUSU = list(
-        #     NY1 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], "MOVE_UP_STAY_UP", my.sgp.target.label[2], "PROJ_YEAR_1", sep = "_")]]),
-        #     NY2 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], "MOVE_UP_STAY_UP", my.sgp.target.label[2], "PROJ_YEAR_2", sep = "_")]]),
-        #     NY3 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], "MOVE_UP_STAY_UP", my.sgp.target.label[2], "PROJ_YEAR_3", sep = "_")]])),
-        #     CUKU_Current = list(
-        #     NY1 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], my.sgp.target.label[2], "PROJ_YEAR_1_CURRENT", sep = "_")]]),
-        #     NY2 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], my.sgp.target.label[2], "PROJ_YEAR_2_CURRENT", sep = "_")]]),
-        #     NY3 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], my.sgp.target.label[2], "PROJ_YEAR_3_CURRENT", sep = "_")]])),
-        #     MUSU_Current = list(
-        #     NY1 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], "MOVE_UP_STAY_UP", my.sgp.target.label[2], "PROJ_YEAR_1_CURRENT", sep = "_")]]),
-        #     NY2 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], "MOVE_UP_STAY_UP", my.sgp.target.label[2], "PROJ_YEAR_2_CURRENT", sep = "_")]]),
-        #     NY3 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], "MOVE_UP_STAY_UP", my.sgp.target.label[2], "PROJ_YEAR_3_CURRENT", sep = "_")]]))),
-        # Plotting_SGP_Scale_Score_Targets = list(
-        #     CUKU = list(
-        #     NY1 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], my.sgp.target.label[2], "PROJ_YEAR_1_TRANSFORMED", sep = "_")]]),
-        #     NY2 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], my.sgp.target.label[2], "PROJ_YEAR_2_TRANSFORMED", sep = "_")]]),
-        #     NY3 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], my.sgp.target.label[2], "PROJ_YEAR_3_TRANSFORMED", sep = "_")]])),
-        #     MUSU = list(
-        #     NY1 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], "MOVE_UP_STAY_UP", my.sgp.target.label[2], "PROJ_YEAR_1_TRANSFORMED", sep = "_")]]),
-        #     NY2 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], "MOVE_UP_STAY_UP", my.sgp.target.label[2], "PROJ_YEAR_2_TRANSFORMED", sep = "_")]]),
-        #     NY3 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], "MOVE_UP_STAY_UP", my.sgp.target.label[2], "PROJ_YEAR_3_TRANSFORMED", sep = "_")]])),
-        #     CUKU_Current = list(
-        #     NY1 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], my.sgp.target.label[2], "PROJ_YEAR_1_CURRENT_TRANSFORMED", sep = "_")]]),
-        #     NY2 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], my.sgp.target.label[2], "PROJ_YEAR_2_CURRENT_TRANSFORMED", sep = "_")]]),
-        #     NY3 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], my.sgp.target.label[2], "PROJ_YEAR_3_CURRENT_TRANSFORMED", sep = "_")]])),
-        #     MUSU_Current = list(
-        #     NY1 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], "MOVE_UP_STAY_UP", my.sgp.target.label[2], "PROJ_YEAR_1_CURRENT_TRANSFORMED", sep = "_")]]),
-        #     NY2 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], "MOVE_UP_STAY_UP", my.sgp.target.label[2], "PROJ_YEAR_2_CURRENT_TRANSFORMED", sep = "_")]]),
-        #     NY3 = as.numeric(tmp_student_data[[paste('SCALE_SCORE', my.sgp.target.label[1], "MOVE_UP_STAY_UP", my.sgp.target.label[2], "PROJ_YEAR_3_CURRENT_TRANSFORMED", sep = "_")]]))),
         Cutscores = sgPlot.cutscores[[content_areas[vp]]],
         Years = rev(sgPlot.years),
         Report_Parameters = list(
-            Current_Year = last.year, Content_Area = content_areas[vp],
-            State = "WIDA_GA", SGP_Targets = sgPlot.sgp.targets,
+            Current_Year = last.year, Content_Area = content_areas[vp], State = "WIDA_GA",
+            SGP_Targets = sgPlot.sgp.targets, Assessment_Transition = sgPlot.linkages,
             Content_Area_Title = tmp_student_data[[paste("CONTENT_AREA_LABELS", last.year, sep = ".")]],
-            Configuration = list(Language = custom.isr$Language,
-                                Zero_to_K = custom.isr$Zero_to_K,
-                                Font_Family = custom.isr$Font_Family,
-                                Font_Size = list(
-                                    title.ca.size = 1.6, legend.size = 0.6, legend.lheight = 0.7,
-                                    left.vp.size = 0.75, bottom.right.vp.size = 1.2, bottom.left.vp.size = 0.6))))
+            Fan = if (sgPlot.fan) SGP::SGPstateData[[state]][["SGP_Configuration"]][['sgPlot.fan.condition']] else FALSE,
+            Configuration = list(
+                Language = custom.isr$Language,
+                Zero_to_K = custom.isr$Zero_to_K,
+                Font_Family = custom.isr$Font_Family,
+                Font_Size = list(
+                    title.ca.size = 1.6, legend.size = 0.6, legend.lheight = 0.7,
+                    left.vp.size = 0.75, bottom.right.vp.size = 1.2, bottom.left.vp.size = 0.6))))
 
     popViewport()
 
@@ -169,8 +132,8 @@
     ##  Report Text
     pushViewport(custom.isr$Grid_Objects$report_text.vp)
     grid.text(label = custom.isr$Report_Text,
-              x = 0.025, y = 0.5, just = "left", default.units = "native", # x = 0.0125
-              gp = gpar(fontfamily = custom.isr$Font_Family, col = "black", cex = 0.825)) # cex = 0.8
+              x = 0.035, y = 0.5, just = "left", default.units = "native", # x = 0.0125 .. 0.025
+              gp = gpar(fontfamily = custom.isr$Font_Family, col = "black", cex = custom.isr$Report_Text_Size)) # cex = 0.825
     popViewport()
 
     ##  Color block 2

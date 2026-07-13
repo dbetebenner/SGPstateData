@@ -1,22 +1,40 @@
-### widaACCESS_ss_old_to_ss_new
+### widaACCESS_2026_scale_score_transformation
 ###
-### Converts a pre-2025-26 (OLD) WIDA ACCESS composite scale score to its
-### 2025-26 (NEW) composite-scale equivalent.  WIDA reset the composite scale in
-### 2025-26: the range is still 100-600 but the two scales are NOT comparable.
+### Converts a WIDA ACCESS composite scale score between the pre-2025-26 (OLD) and
+### 2025-26 (NEW) composite scales via the `direction` argument.  WIDA reset the
+### composite scale in 2025-26: the range is still 100-600 but the two scales are
+### NOT comparable.
+###
+###   direction = "OLD_to_NEW" (default): convert OLD scale scores to NEW.
+###   direction = "NEW_to_OLD":           convert NEW scale scores to OLD.
 ###
 ### The mapping is built per grade from the 2025-26 / 2024-25 concordance table
-### using a linear interpolator (stats::approxfun, rule=2) so that OLD scores not
-### explicitly present in the table are interpolated, and scores beyond the table
-### range are clamped to the nearest endpoint.  Because the OLD->NEW relationship
-### is one-to-many at the tails (many NEW scores collapse onto a single OLD score),
-### each OLD score is mapped to the MEDIAN of its corresponding NEW-score cluster.
+### using a linear interpolator (stats::approxfun, rule=2) so that scores not
+### explicitly present in the table are interpolated.  Because the concordance is
+### one-to-many at the tails (many NEW scores collapse onto a single OLD score),
+### each direction collapses plateaus to a single representative score using the
+### MEDIAN of the corresponding cluster:
+###   OLD -> NEW: median NEW per OLD (many NEW map to one OLD at the tail).
+###   NEW -> OLD: median OLD per NEW (symmetric; typically one OLD per NEW).
+###
+### The concordance spans the full NEW range (100-600) for every grade but only a
+### subset of OLD scores (e.g., grade 12 spans OLD 239-491).  Identity anchors at
+### 100 and 600 are added only where a grade lacks a concordance knot at that score
+### (no override).  For OLD -> NEW this typically adds OLD 100/600 anchors; for
+### NEW -> OLD the concordance already has NEW 100/600 knots so boundary mapping
+### follows the table (e.g., grade 12: NEW 100 -> OLD 239, NEW 600 -> OLD 491).
+### Round-trip OLD -> NEW -> OLD is exact in the interior range but not on tail
+### plateaus where many NEW scores collapse to one OLD score (median collapse).
 
-widaACCESS_ss_old_to_ss_new <- function(
+widaACCESS_2026_scale_score_transformation <- function(
     grade=NULL,
-    scale_score=NULL
+    scale_score=NULL,
+    direction=c("OLD_to_NEW", "NEW_to_OLD")
 ) {
 
 require(data.table)
+
+direction <- match.arg(toupper(as.character(direction)[1L]), c("OLD_TO_NEW", "NEW_TO_OLD"))
 
 ### Lookup table (long-format concordance)
 ###   SS_NEW = 2025-26 (new) composite scale score
@@ -6540,17 +6558,51 @@ wida.access.concordance <- data.table::fread(
 
 wida.access.concordance[,GRADE:=as.character(GRADE)]
 
-### Collapse one-to-many (OLD -> NEW) plateaus to a single representative NEW
-### scale score per OLD scale score using the median of the cluster.
+if (direction == "OLD_TO_NEW") {
+    ### Collapse one-to-many (OLD -> NEW) plateaus to a single representative NEW
+    ### scale score per OLD scale score using the median of the cluster.
 
-agg.dt <- wida.access.concordance[,list(SS_NEW_REP=as.numeric(stats::median(SS_NEW))), by=list(GRADE, SS_OLD)]
-data.table::setorder(agg.dt, GRADE, SS_OLD)
+    agg.dt <- wida.access.concordance[,list(SS_NEW_REP=as.numeric(stats::median(SS_NEW))), by=list(GRADE, SS_OLD)]
 
-### Build one linear interpolator per grade (rule=2 clamps beyond table range).
+    ### Anchor every grade to the full 100-600 OLD-scale range so OLD scores outside
+    ### the concordance's covered OLD range still convert: OLD floor (100) -> NEW floor
+    ### (100), OLD ceiling (600) -> NEW ceiling (600).  Anchors are only added where the
+    ### grade does not already have a knot at that exact OLD score (no override).
 
-approx.funs <- lapply(
-    split(agg.dt, by="GRADE", keep.by=FALSE),
-    function(d) stats::approxfun(x=d[['SS_OLD']], y=d[['SS_NEW_REP']], rule=2))
+    anchor.dt <- data.table::CJ(GRADE=unique(agg.dt[['GRADE']]), SS_OLD=c(100L, 600L))
+    anchor.dt[,SS_NEW_REP:=as.numeric(SS_OLD)]
+    anchor.dt <- anchor.dt[!agg.dt, on=.(GRADE, SS_OLD)]
+    agg.dt <- data.table::rbindlist(list(agg.dt, anchor.dt), use.names=TRUE)
+    data.table::setorder(agg.dt, GRADE, SS_OLD)
+
+    ### Build one linear interpolator per grade (rule=2 clamps anything beyond 100-600).
+
+    approx.funs <- lapply(
+        split(agg.dt, by="GRADE", keep.by=FALSE),
+        function(d) stats::approxfun(x=d[['SS_OLD']], y=d[['SS_NEW_REP']], rule=2))
+} else {
+    ### Collapse one-to-many (NEW -> OLD) plateaus to a single representative OLD
+    ### scale score per NEW scale score using the median of the cluster.
+
+    agg.dt <- wida.access.concordance[,list(SS_OLD_REP=as.numeric(stats::median(SS_OLD))), by=list(GRADE, SS_NEW)]
+
+    ### Anchor every grade to the full 100-600 NEW-scale range so NEW scores outside
+    ### the concordance's covered NEW range still convert: NEW floor (100) -> OLD floor
+    ### (100), NEW ceiling (600) -> OLD ceiling (600).  Anchors are only added where the
+    ### grade does not already have a knot at that exact NEW score (no override).
+
+    anchor.dt <- data.table::CJ(GRADE=unique(agg.dt[['GRADE']]), SS_NEW=c(100L, 600L))
+    anchor.dt[,SS_OLD_REP:=as.numeric(SS_NEW)]
+    anchor.dt <- anchor.dt[!agg.dt, on=.(GRADE, SS_NEW)]
+    agg.dt <- data.table::rbindlist(list(agg.dt, anchor.dt), use.names=TRUE)
+    data.table::setorder(agg.dt, GRADE, SS_NEW)
+
+    ### Build one linear interpolator per grade (rule=2 clamps anything beyond 100-600).
+
+    approx.funs <- lapply(
+        split(agg.dt, by="GRADE", keep.by=FALSE),
+        function(d) stats::approxfun(x=d[['SS_NEW']], y=d[['SS_OLD_REP']], rule=2))
+}
 
 grade.char <- as.character(grade)
 tmp.result <- rep(NA_real_, length(scale_score))

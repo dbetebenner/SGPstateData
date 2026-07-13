@@ -21,7 +21,7 @@ conversations with your child's school and teachers, to discuss questions such a
       *  Is my daughter's academic growth enough to move her to \"Expanding\" level next year?
       *  What will it take for my student to move up to the \"Emerging\" level next year?
 
-For more information about growth in Colorado please visit:  https://www.cde.state.co.us/accountability/stateaccountability
+For more information about growth in Colorado please visit:  https://ed.cde.state.co.us/accountability/stateaccountability
 or send questions via e-mail to:  accountability@cde.state.co.us."
 
 
@@ -49,7 +49,7 @@ acad\u{E9}mico le podr\u{ED}a servir para discutir con los maestros de su estudi
     *  \u{BF}Es el crecimiento acad\u{E9}mico de mi hija suficiente para poder alcanzar el siguiente nivel el pr\u{F3}ximo a\u{F1}o?
     *  \u{BF}Qu\u{E9} necesita hacer mi estudiante para llegar al \u{FA}ltimo nivel el otro a\u{F1}o?
 
-Para obtener m\u{E1}s informaci\u{F3}n sobre el crecimiento en Colorado, visite  https://www.cde.state.co.us/accountability/stateaccountability
+Para obtener m\u{E1}s informaci\u{F3}n sobre el crecimiento en Colorado, visite  https://ed.cde.state.co.us/accountability/stateaccountability
 o p\u{F3}ngase en contacto con e-mail:  accountability@cde.state.co.us."
 
 old.text <- "Para obtener m\u{E1}s informaci\u{F3}n visite: www.cde.state.co.us/accountability/englishlanguageproficiencygrowth o llamar 303-866-6763."
