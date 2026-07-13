@@ -57,7 +57,7 @@
             Current_Year = last.year, Content_Area = content_areas[vp], State = "WIDA_GA",
             SGP_Targets = sgPlot.sgp.targets, Assessment_Transition = sgPlot.linkages,
             Content_Area_Title = tmp_student_data[[paste("CONTENT_AREA_LABELS", last.year, sep = ".")]],
-            Fan = ifelse(sgPlot.fan, SGP::SGPstateData[[state]][["SGP_Configuration"]][['sgPlot.fan.condition']], FALSE),
+            Fan = if (sgPlot.fan) SGP::SGPstateData[[state]][["SGP_Configuration"]][['sgPlot.fan.condition']] else FALSE,
             Configuration = list(
                 Language = custom.isr$Language,
                 Zero_to_K = custom.isr$Zero_to_K,
@@ -132,8 +132,8 @@
     ##  Report Text
     pushViewport(custom.isr$Grid_Objects$report_text.vp)
     grid.text(label = custom.isr$Report_Text,
-              x = 0.025, y = 0.5, just = "left", default.units = "native", # x = 0.0125
-              gp = gpar(fontfamily = custom.isr$Font_Family, col = "black", cex = 0.8)) # cex = 0.825
+              x = 0.035, y = 0.5, just = "left", default.units = "native", # x = 0.0125 .. 0.025
+              gp = gpar(fontfamily = custom.isr$Font_Family, col = "black", cex = custom.isr$Report_Text_Size)) # cex = 0.825
     popViewport()
 
     ##  Color block 2

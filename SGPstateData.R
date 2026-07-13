@@ -1918,7 +1918,7 @@ SGPstateData[["CO"]][['SGP_Progression_Preference']] <-
 
   talc.dates <-
     c("2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024",
-	  "2025", "2026", "2027", "2027", "2029")
+	  "2025", "2026", "2027", "2028", "2029", "2030")
 
   SGPstateData[["CO"]][["Student_Report_Information"]] = list(
       Include_Front_Page_in_School_Catalog = FALSE,
@@ -11083,7 +11083,7 @@ SGPstateData[["WIDA_GA"]][["Assessment_Program_Information"]] <- list(
 
 SGPstateData[["WIDA_GA"]][["Student_Report_Information"]] <- list(
 	sgPlot.year.span = 3,
-	# Vertical_Scale = list(READING = TRUE),
+	Vertical_Scale = list(READING = TRUE),
 	Grades_Reported = list(READING = 0:12),
 	Content_Areas_Labels = list(READING = "Overall Composite"),
 	Content_Area_in_Legend = FALSE,
@@ -11114,8 +11114,8 @@ SGPstateData[["WIDA_GA"]][["Student_Report_Information"]] <- list(
         "Level 4 Expanding" = "Level 4.3", # Collapse state minimum exit criteria (used for projections, but not shown in ISRs)
         "Level 5 Bridging" = "Level 5",
         "Level 6 Reaching" = "Level 6"),
-	Transformed_Achievement_Level_Cutscores = list(READING = "2026"), # maybe use after 2026 scale changes?
-	Transformed_Achievement_Level_Cutscores_gaPlot = list(READING = "2026"),
+	# Transformed_Achievement_Level_Cutscores = list(READING = "2026"), # maybe use after 2026 scale changes?
+	# Transformed_Achievement_Level_Cutscores_gaPlot = list(READING = "2026"),
 	file_remove_pattern = "",
     catalog_name = 
 		"file.path(sgPlot.folder, year_folder, 'All_Schools', paste(i, j, gsub('/', '-', tmp_school_name), 'ACCESS_SGP', year_folder, 'ISR.pdf', sep = '_'))"
@@ -11180,7 +11180,7 @@ SGPstateData[["WIDA_GA"]][["Assessment_Program_Information"]][["Assessment_Trans
         "Level 6 Reaching"   = "Level 6"),
     Content_Areas_Labels = list(READING = "Overall Composite"),
     Content_Areas_Labels.2026 = list(READING = "Overall Composite"),
-    Vertical_Scale = "No",
+    Vertical_Scale = "Yes",
     Vertical_Scale.2026 = "No",
     Grades_Tested = 0:12,
     Grades_Tested.2026 = 0:12,
@@ -11235,6 +11235,7 @@ SGPstateData[["WIDA_GA"]][["Custom_Student_Report"]] <- list(
 	Report_Title = "Student English Language Proficiency Growth Report 2026",
 	Report_Text = Report_Text_ENGLISH,
 	Report_Logo = GaDOE_img,
+    Report_Text_Size = 0.8,
 	Grid_Objects = list(
 		report.vp = viewport(layout = grid.layout(13, 6, widths = unit(c(0.55, 0.1, 2.65, 3.5, 1.35, 0.35), rep("inches", 6)), # , 1.9, 4.0
 			heights = unit(c(0.15, 0.175, 0.175, 0.175, 0.25, 0.0625, 0.025, 5.75, 0.05, 0.025, 0.0625, 3.75, 0.35), rep("inches", 13)))),
@@ -11296,13 +11297,14 @@ SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Student_Info"]] <
 SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Zero_to_K"]] <- "J"
 SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Font_Family"]] <- "Helvetica-Narrow"
 SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Report_Text"]] <- Report_Text_SPANISH
+SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Report_Text_Size"]] <- 0.785
 SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Report_Title"]] <- 
                 "Reporte estudiantil sobre el desarrollo ling\u{FC}\u{ED}stico en ingl\u{E9}s, 2026"
 
 SGPstateData[["WIDA_GA_SPANISH"]][["Student_Report_Information"]] <- list(
 	sgPlot.year.span = 3,
 	Grades_Reported = list(READING = 0:12),
-	# Vertical_Scale = list(READING = TRUE),
+	Vertical_Scale = list(READING = TRUE),
 	Content_Areas_Labels = list(READING = "Conjunto"),
 	Content_Area_in_Legend = FALSE,
 	Legend_Extra = c(
