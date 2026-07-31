@@ -1,8 +1,25 @@
 ### widaACCESS_ss_to_pl
 ###
-### Converts a WIDA ACCESS composite scale score to its associated 1.0-6.0
-### performance level (PL).  Supports both the pre-2025-26 (OLD) composite scale
-### and the 2025-26 (NEW) composite scale via the `scale` argument.
+### Converts between a WIDA ACCESS composite scale score and its associated
+### 1.0-6.0 performance level (PL), in EITHER direction, for the pre-2025-26 (OLD)
+### or the 2025-26 (NEW) composite scale (selected via the `scale` argument).
+###
+### DIRECTIONS (supply exactly one input):
+###   * Forward (scale score -> PL): pass `scale_score`.  Returns the PL band that
+###     contains each score.  This is the original, unchanged behavior.
+###   * Reverse (PL -> integer scale score): pass `proficiency_level`.  Because a PL
+###     occupies the half-open score band [LOW_SCORE, HIGH_SCORE), `position` selects
+###     which integer score in that band to return:
+###       - "min"    (default) smallest integer in the band = the level's lower cut
+###       - "max"              largest integer below the next level's cut
+###       - "middle"           round-half-up midpoint of [min, max]
+###     The highest band of each grade is open (a 999 sentinel HIGH_SCORE), so "max"
+###     and "middle" for the top level return NA unless `hoss` supplies the highest
+###     obtainable scale score (a scalar applied to every top band, or a numeric
+###     vector named by grade).  A PL that does not exist for a grade (e.g. 6.0 at
+###     grade 0 on the NEW scale) returns NA.
+###
+### Both directions are vectorized over `grade` and the score/level input.
 ###
 ### NOTE (PRELIMINARY NEW-SCALE CUTS):
 ###   WIDA reset the composite scale in 2025-26.  The range is still 100-600 but
@@ -16,12 +33,27 @@
 widaACCESS_ss_to_pl <- function(
     grade=NULL,
     scale_score=NULL,
-    scale=c("OLD", "NEW")
+    scale=c("OLD", "NEW"),
+    proficiency_level=NULL,
+    position=c("min", "max", "middle"),
+    hoss=NULL
 ) {
 
 require(data.table)
 
 scale <- match.arg(toupper(as.character(scale)[1L]), c("OLD", "NEW"))
+position <- match.arg(position)
+
+### Direction inference: exactly one of scale_score (forward) / proficiency_level (reverse)
+
+forward <- !is.null(scale_score)
+reverse <- !is.null(proficiency_level)
+if (forward && reverse) {
+    stop("Supply exactly one of `scale_score` (forward, SS -> PL) or `proficiency_level` (reverse, PL -> SS), not both.")
+}
+if (!forward && !reverse) {
+    stop("Supply either `scale_score` (forward, SS -> PL) or `proficiency_level` (reverse, PL -> SS).")
+}
 
 ### Utility functions
 
@@ -1344,6 +1376,76 @@ wida.access.ss.to.pl.lookup <- data.table::fread(
 
 wida.access.ss.to.pl.lookup[,GRADE:=as.character(GRADE)]
 wida.access.ss.to.pl.lookup[,WIDA_ACCESS_PROFICIENCY_LEVEL:=strhead(paste0(WIDA_ACCESS_PROFICIENCY_LEVEL, ".0"), 3)]
-tmp.dt <- wida.access.ss.to.pl.lookup[data.table(GRADE=grade, SCALE_SCORE=scale_score), on=.(GRADE, LOW_SCORE <= SCALE_SCORE, HIGH_SCORE > SCALE_SCORE)]
-return(tmp.dt[['WIDA_ACCESS_PROFICIENCY_LEVEL']])
+
+### ---------------------------------------------------------------------------------------
+### FORWARD: scale score -> proficiency level (behavior unchanged)
+### ---------------------------------------------------------------------------------------
+
+if (forward) {
+    tmp.dt <- wida.access.ss.to.pl.lookup[data.table(GRADE=grade, SCALE_SCORE=scale_score), on=.(GRADE, LOW_SCORE <= SCALE_SCORE, HIGH_SCORE > SCALE_SCORE)]
+    return(tmp.dt[['WIDA_ACCESS_PROFICIENCY_LEVEL']])
+}
+
+### ---------------------------------------------------------------------------------------
+### REVERSE: proficiency level -> integer scale score
+###   Each PL occupies the half-open band [LOW_SCORE, HIGH_SCORE):
+###     min    = ceiling(LOW_SCORE)         smallest integer in the band
+###     max    = ceiling(HIGH_SCORE) - 1    largest integer below the next cut
+###     middle = round-half-up((min+max)/2) midpoint integer of [min, max]
+###   The top band per grade is open (999 sentinel); its max/middle are NA unless
+###   `hoss` supplies a bound.
+### ---------------------------------------------------------------------------------------
+
+wida.access.ss.to.pl.lookup[, MIN_SS := as.integer(ceiling(LOW_SCORE))]
+wida.access.ss.to.pl.lookup[, MAX_SS := as.integer(ceiling(HIGH_SCORE) - 1L)]
+wida.access.ss.to.pl.lookup[HIGH_SCORE >= 999, MAX_SS := NA_integer_]
+
+### Optional explicit ceiling for the open top band(s)
+if (!is.null(hoss)) {
+    if (is.null(names(hoss))) {
+        wida.access.ss.to.pl.lookup[HIGH_SCORE >= 999, MAX_SS := as.integer(hoss[1L])]
+    } else {
+        hoss.dt <- data.table(GRADE=as.character(names(hoss)), HOSS=as.integer(hoss))
+        wida.access.ss.to.pl.lookup[hoss.dt, on=.(GRADE), MAX_SS := data.table::fifelse(HIGH_SCORE >= 999, HOSS, MAX_SS)]
+    }
+}
+
+wida.access.ss.to.pl.lookup[, MIDDLE_SS := as.integer(floor((MIN_SS + MAX_SS) / 2 + 0.5))]
+
+value.col <- switch(position, min="MIN_SS", max="MAX_SS", middle="MIDDLE_SS")
+
+query.dt <- data.table(
+    GRADE=as.character(grade),
+    WIDA_ACCESS_PROFICIENCY_LEVEL=strhead(paste0(proficiency_level, ".0"), 3))
+res.dt <- wida.access.ss.to.pl.lookup[query.dt, on=.(GRADE, WIDA_ACCESS_PROFICIENCY_LEVEL)]
+
+if (position %in% c("max", "middle") && is.null(hoss) &&
+    any(!is.na(res.dt[["HIGH_SCORE"]]) & res.dt[["HIGH_SCORE"]] >= 999)) {
+    message("widaACCESS_ss_to_pl: `", position,
+            "` is undefined for the open top proficiency band (999 sentinel); ",
+            "returning NA there.  Supply `hoss` to bound the top band.")
+}
+
+return(res.dt[[value.col]])
+}
+
+### widaACCESS_pl_to_ss
+###
+### Thin convenience wrapper around widaACCESS_ss_to_pl() for the reverse direction
+### (proficiency level -> integer scale score).  See widaACCESS_ss_to_pl() for the
+### `position` / `hoss` semantics.
+
+widaACCESS_pl_to_ss <- function(
+    grade=NULL,
+    proficiency_level=NULL,
+    scale=c("OLD", "NEW"),
+    position=c("min", "max", "middle"),
+    hoss=NULL
+) {
+    widaACCESS_ss_to_pl(
+        grade=grade,
+        scale=scale,
+        proficiency_level=proficiency_level,
+        position=match.arg(position),
+        hoss=hoss)
 }
