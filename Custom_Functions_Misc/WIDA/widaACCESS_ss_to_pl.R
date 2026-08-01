@@ -1,3 +1,29 @@
+### widaACCESS_pl_to_ss
+###
+### Thin convenience wrapper around widaACCESS_ss_to_pl() for the reverse direction
+### (proficiency level -> integer scale score).  See widaACCESS_ss_to_pl() for the
+### `position` / `hoss` semantics.
+###
+### Defined FIRST (before widaACCESS_ss_to_pl) on purpose: this file is loaded via
+### source(...)[["value"]], so its value must be the primary widaACCESS_ss_to_pl()
+### function -- i.e. widaACCESS_ss_to_pl() must remain the LAST top-level expression.
+### The wrapper resolves widaACCESS_ss_to_pl at call time, so defining it earlier is safe.
+
+widaACCESS_pl_to_ss <- function(
+    grade=NULL,
+    proficiency_level=NULL,
+    scale=c("OLD", "NEW"),
+    position=c("min", "max", "middle"),
+    hoss=NULL
+) {
+    widaACCESS_ss_to_pl(
+        grade=grade,
+        scale=scale,
+        proficiency_level=proficiency_level,
+        position=match.arg(position),
+        hoss=hoss)
+}
+
 ### widaACCESS_ss_to_pl
 ###
 ### Converts between a WIDA ACCESS composite scale score and its associated
@@ -1427,25 +1453,4 @@ if (position %in% c("max", "middle") && is.null(hoss) &&
 }
 
 return(res.dt[[value.col]])
-}
-
-### widaACCESS_pl_to_ss
-###
-### Thin convenience wrapper around widaACCESS_ss_to_pl() for the reverse direction
-### (proficiency level -> integer scale score).  See widaACCESS_ss_to_pl() for the
-### `position` / `hoss` semantics.
-
-widaACCESS_pl_to_ss <- function(
-    grade=NULL,
-    proficiency_level=NULL,
-    scale=c("OLD", "NEW"),
-    position=c("min", "max", "middle"),
-    hoss=NULL
-) {
-    widaACCESS_ss_to_pl(
-        grade=grade,
-        scale=scale,
-        proficiency_level=proficiency_level,
-        position=match.arg(position),
-        hoss=hoss)
 }
