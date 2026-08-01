@@ -10573,7 +10573,7 @@ SGPstateData[["WIDA"]][["Student_Report_Information"]] <- list(
 	Transformed_Achievement_Level_Cutscores_gaPlot = list(READING = 2017:2029)
 )
 
-widaACCESS_ss_to_pl <- source("Custom_Functions_Misc/WIDA/widaACCESS_ss_to_pl.R")
+widaACCESS_ss_to_pl <- source("Custom_Functions_Misc/WIDA/widaACCESS_ss_to_pl.R")[["value"]]
 widaACCESS_2026_scale_score_transformation <- source("Custom_Functions_Misc/WIDA/widaACCESS_2026_scale_score_transformation.R")[["value"]]
 SGPstateData[["WIDA"]][["SGP_Configuration"]] <- list(
 	max.order.for.percentile=2,
