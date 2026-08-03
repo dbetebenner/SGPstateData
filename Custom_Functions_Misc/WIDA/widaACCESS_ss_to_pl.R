@@ -4,9 +4,10 @@
 ### (proficiency level -> integer scale score).  See widaACCESS_ss_to_pl() for the
 ### `position` / `hoss` semantics.
 ###
-### Defined FIRST (before widaACCESS_ss_to_pl) on purpose: this file is loaded via
-### source(...)[["value"]], so its value must be the primary widaACCESS_ss_to_pl()
-### function -- i.e. widaACCESS_ss_to_pl() must remain the LAST top-level expression.
+### Defined FIRST (before widaACCESS_ss_to_pl) so widaACCESS_ss_to_pl() remains the
+### LAST top-level expression in this file (useful when sourcing for value).  SGPstateData
+### loads both functions via sys.source(..., envir = new.env()) + get(), so call-site
+### access should use SGP_Configuration$widaACCESS_ss_to_pl / widaACCESS_pl_to_ss.
 ### The wrapper resolves widaACCESS_ss_to_pl at call time, so defining it earlier is safe.
 
 widaACCESS_pl_to_ss <- function(
