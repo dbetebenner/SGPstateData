@@ -10588,7 +10588,6 @@ SGPstateData[["WIDA"]][["SGP_Configuration"]] <- list(
 	sgp.target.types=c("Scale_Score_Targets_CUKU", "Scale_Score_Targets_Current_CUKU"),
 	widaACCESS_ss_to_pl=widaACCESS_ss_to_pl,
 	widaACCESS_pl_to_ss=widaACCESS_pl_to_ss,
-	ss_to_pl_function=widaACCESS_ss_to_pl,
 	ss_2026_scale_score_transformation_function=widaACCESS_2026_scale_score_transformation)
 
 SGPstateData[["WIDA"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <-
