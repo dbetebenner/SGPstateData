@@ -10573,7 +10573,10 @@ SGPstateData[["WIDA"]][["Student_Report_Information"]] <- list(
 	Transformed_Achievement_Level_Cutscores_gaPlot = list(READING = 2017:2029)
 )
 
-widaACCESS_ss_to_pl <- source("Custom_Functions_Misc/WIDA/widaACCESS_ss_to_pl.R")[["value"]]
+wida.access.env <- new.env()
+sys.source("Custom_Functions_Misc/WIDA/widaACCESS_ss_to_pl.R", envir = wida.access.env)
+widaACCESS_ss_to_pl <- get("widaACCESS_ss_to_pl", envir = wida.access.env, inherits = FALSE)
+widaACCESS_pl_to_ss <- get("widaACCESS_pl_to_ss", envir = wida.access.env, inherits = FALSE)
 widaACCESS_2026_scale_score_transformation <- source("Custom_Functions_Misc/WIDA/widaACCESS_2026_scale_score_transformation.R")[["value"]]
 SGPstateData[["WIDA"]][["SGP_Configuration"]] <- list(
 	max.order.for.percentile=2,
@@ -10583,6 +10586,8 @@ SGPstateData[["WIDA"]][["SGP_Configuration"]] <- list(
 	sgp.projections.max.forward.progression.years=7,
 	return.norm.group.scale.scores=TRUE,
 	sgp.target.types=c("Scale_Score_Targets_CUKU", "Scale_Score_Targets_Current_CUKU"),
+	widaACCESS_ss_to_pl=widaACCESS_ss_to_pl,
+	widaACCESS_pl_to_ss=widaACCESS_pl_to_ss,
 	ss_to_pl_function=widaACCESS_ss_to_pl,
 	ss_2026_scale_score_transformation_function=widaACCESS_2026_scale_score_transformation)
 
