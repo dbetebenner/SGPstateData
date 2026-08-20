@@ -4455,6 +4455,28 @@ SGPstateData[["IN"]][["Achievement"]][["Knots_Boundaries"]] <-
 			loss.hoss_7=c(5130, 5890),
 			loss.hoss_8=c(5150, 5920),
 			loss.hoss_10=c(100, 400)),
+		ELA.2026=list(
+			boundaries_3=c(275.8, 530.2),
+			boundaries_4=c(277.6, 570.4),
+			boundaries_5=c(276.1, 610.9),
+			boundaries_6=c(278.9, 616.1),
+			boundaries_7=c(287.9, 625.1),
+			boundaries_8=c(287.7, 651.3),
+			boundaries_10=c(85, 415), ## Carried over from 2025. No 2026 Grade 10 data to utilize
+			knots_3=c(371, 394, 413, 435),
+			knots_4=c(388, 415, 436, 460),
+			knots_5=c(397.0, 426.2, 451.0, 478.0),
+			knots_6=c(407, 438, 463, 491),
+			knots_7=c(417, 449, 476, 505),
+			knots_8=c(430, 461, 487, 517),
+			knots_10=c(210, 240, 266, 297), ## Carried over from 2025. No 2026 Grade 10 data to utilize
+			loss.hoss_3=c(297, 509),
+			loss.hoss_4=c(302, 546),
+			loss.hoss_5=c(304, 583),
+			loss.hoss_6=c(307, 588),
+			loss.hoss_7=c(316, 597),
+			loss.hoss_8=c(318, 621),
+			loss.hoss_10=c(100, 400)), ## Carried over from 2025. No 2026 Grade 10 data to utilize
 		MATHEMATICS=list(
 			boundaries_3=c(6041.4, 6792.6),
 			boundaries_4=c(6030, 6870),
@@ -4476,7 +4498,29 @@ SGPstateData[["IN"]][["Achievement"]][["Knots_Boundaries"]] <-
 			loss.hoss_6=c(6110, 6870),
 			loss.hoss_7=c(6120, 6920),
 			loss.hoss_8=c(6120, 6950),
-			loss.hoss_10=c(100, 400)))
+			loss.hoss_10=c(100, 400)),
+		MATHEMATICS.2026=list(
+			boundaries_3=c(388.1, 566.9),
+			boundaries_4=c(396.2, 609.8),
+			boundaries_5=c(396.5, 666.5),
+			boundaries_6=c(394, 742),
+			boundaries_7=c(402.4, 829.6),
+			boundaries_8=c(408.6, 941.4),
+			boundaries_10=c(85, 415), ## Carried over from 2025. No 2026 Grade 10 data to utilize
+			knots_3=c(468, 480, 491, 502),
+			knots_4=c(484, 499, 513, 528),
+			knots_5=c(491, 513, 533, 555),
+			knots_6=c(505, 534, 561, 591),
+			knots_7=c(526, 561, 597, 638),
+			knots_8=c(553, 601, 647, 697),
+			knots_10=c(210, 240, 266, 297), ## Carried over from 2025. No 2026 Grade 10 data to utilize
+			loss.hoss_3=c(403, 552),
+			loss.hoss_4=c(414, 592),
+			loss.hoss_5=c(419, 644),
+			loss.hoss_6=c(423, 713),
+			loss.hoss_7=c(438, 794),
+			loss.hoss_8=c(453, 897),
+			loss.hoss_10=c(100, 400))) ## Carried over from 2025. No 2026 Grade 10 data to utilize))
 
 SGPstateData[["IN"]][["Achievement"]][["Cutscores"]] <-
 	list(
@@ -4510,6 +4554,14 @@ SGPstateData[["IN"]][["Achievement"]][["Cutscores"]] <-
 			GRADE_7=c(5507, 5568, 5629),
 			GRADE_8=c(5511, 5577, 5638),
 			GRADE_10=c(244, 292)),
+		ELA.2026=list( 
+			GRADE_3=c(364, 413, 456),
+			GRADE_4=c(388, 434, 484),
+			GRADE_5=c(398, 449, 503),
+			GRADE_6=c(408, 462, 518),
+			GRADE_7=c(418, 474, 530),
+			GRADE_8=c(431, 484, 540),
+			GRADE_10=c(244, 292)), ## Carried over from 2025. No 2026 Grade 10 data to utilize
 #		MATHEMATICS=list(
 #			GRADE_3=c(413, 513),
 #			GRADE_4=c(445, 541),
@@ -4539,7 +4591,16 @@ SGPstateData[["IN"]][["Achievement"]][["Cutscores"]] <-
 			GRADE_6=c(6488, 6545, 6605),
 			GRADE_7=c(6493, 6562, 6625),
 			GRADE_8=c(6509, 6590, 6651),
-			GRADE_10=c(271, 339)))
+			GRADE_10=c(271, 339)),
+		MATHEMATICS=list( 
+			GRADE_3=c(468, 485, 512), 
+			GRADE_4=c(489, 505, 541), 
+			GRADE_5=c(505, 531, 573),
+			GRADE_6=c(525, 561, 617),
+			GRADE_7=c(549, 605, 669),
+			GRADE_8=c(585, 661, 738),
+			GRADE_10=c(271, 339))) ## Carried over from 2025. No 2026 Grade 10 data to utilize
+
 
 SGPstateData[["IN"]][["Achievement"]][["Levels"]] <-
 	list(
