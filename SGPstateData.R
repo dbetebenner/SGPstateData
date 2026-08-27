@@ -4455,6 +4455,28 @@ SGPstateData[["IN"]][["Achievement"]][["Knots_Boundaries"]] <-
 			loss.hoss_7=c(5130, 5890),
 			loss.hoss_8=c(5150, 5920),
 			loss.hoss_10=c(100, 400)),
+		ELA.2026=list(
+			boundaries_3=c(275.8, 530.2),
+			boundaries_4=c(277.6, 570.4),
+			boundaries_5=c(276.1, 610.9),
+			boundaries_6=c(278.9, 616.1),
+			boundaries_7=c(287.9, 625.1),
+			boundaries_8=c(287.7, 651.3),
+			boundaries_10=c(85, 415), ## Carried over from 2025. No 2026 Grade 10 data to utilize
+			knots_3=c(371, 394, 413, 435),
+			knots_4=c(388, 415, 436, 460),
+			knots_5=c(397.0, 426.2, 451.0, 478.0),
+			knots_6=c(407, 438, 463, 491),
+			knots_7=c(417, 449, 476, 505),
+			knots_8=c(430, 461, 487, 517),
+			knots_10=c(210, 240, 266, 297), ## Carried over from 2025. No 2026 Grade 10 data to utilize
+			loss.hoss_3=c(297, 509),
+			loss.hoss_4=c(302, 546),
+			loss.hoss_5=c(304, 583),
+			loss.hoss_6=c(307, 588),
+			loss.hoss_7=c(316, 597),
+			loss.hoss_8=c(318, 621),
+			loss.hoss_10=c(100, 400)), ## Carried over from 2025. No 2026 Grade 10 data to utilize
 		MATHEMATICS=list(
 			boundaries_3=c(6041.4, 6792.6),
 			boundaries_4=c(6030, 6870),
@@ -4476,7 +4498,29 @@ SGPstateData[["IN"]][["Achievement"]][["Knots_Boundaries"]] <-
 			loss.hoss_6=c(6110, 6870),
 			loss.hoss_7=c(6120, 6920),
 			loss.hoss_8=c(6120, 6950),
-			loss.hoss_10=c(100, 400)))
+			loss.hoss_10=c(100, 400)),
+		MATHEMATICS.2026=list(
+			boundaries_3=c(388.1, 566.9),
+			boundaries_4=c(396.2, 609.8),
+			boundaries_5=c(396.5, 666.5),
+			boundaries_6=c(394, 742),
+			boundaries_7=c(402.4, 829.6),
+			boundaries_8=c(408.6, 941.4),
+			boundaries_10=c(85, 415), ## Carried over from 2025. No 2026 Grade 10 data to utilize
+			knots_3=c(468, 480, 491, 502),
+			knots_4=c(484, 499, 513, 528),
+			knots_5=c(491, 513, 533, 555),
+			knots_6=c(505, 534, 561, 591),
+			knots_7=c(526, 561, 597, 638),
+			knots_8=c(553, 601, 647, 697),
+			knots_10=c(210, 240, 266, 297), ## Carried over from 2025. No 2026 Grade 10 data to utilize
+			loss.hoss_3=c(403, 552),
+			loss.hoss_4=c(414, 592),
+			loss.hoss_5=c(419, 644),
+			loss.hoss_6=c(423, 713),
+			loss.hoss_7=c(438, 794),
+			loss.hoss_8=c(453, 897),
+			loss.hoss_10=c(100, 400))) ## Carried over from 2025. No 2026 Grade 10 data to utilize))
 
 SGPstateData[["IN"]][["Achievement"]][["Cutscores"]] <-
 	list(
@@ -4510,6 +4554,23 @@ SGPstateData[["IN"]][["Achievement"]][["Cutscores"]] <-
 			GRADE_7=c(5507, 5568, 5629),
 			GRADE_8=c(5511, 5577, 5638),
 			GRADE_10=c(244, 292)),
+		ELA.2026=list( ### TRANSITION YEAR 2026: 2026 (new) standards expressed on the OLD (2019/ILEARN) scale via equipercentile equating (see SGP_Sandbox/Indiana_2026_ILEARN_Scale_Change). Keyed to 2026 so baseline-referenced SGPs run on the OLD scale apply the CURRENT (new) standards.
+			GRADE_3=c(5356, 5460, 5547),
+			GRADE_4=c(5395, 5491, 5595),
+			GRADE_5=c(5419, 5521, 5623),
+			GRADE_6=c(5443, 5543, 5640),
+			GRADE_7=c(5458, 5559, 5657),
+			GRADE_8=c(5473, 5574, 5671),
+			GRADE_10=c(244, 292)), ### Grade 10 carried over from 2025 (no 2026 Grade 10 equating)
+### ---- ELA official cuts on the NEW scale (for analyses REPORTED on the new scale, >=2027; NOT used in the 2026 transition) ----
+#		ELA.2026.NEW_SCALE=list(
+#			GRADE_3=c(364, 413, 456),
+#			GRADE_4=c(388, 434, 484),
+#			GRADE_5=c(398, 449, 503),
+#			GRADE_6=c(408, 462, 518),
+#			GRADE_7=c(418, 474, 530),
+#			GRADE_8=c(431, 484, 540),
+#			GRADE_10=c(244, 292)),
 #		MATHEMATICS=list(
 #			GRADE_3=c(413, 513),
 #			GRADE_4=c(445, 541),
@@ -4539,7 +4600,25 @@ SGPstateData[["IN"]][["Achievement"]][["Cutscores"]] <-
 			GRADE_6=c(6488, 6545, 6605),
 			GRADE_7=c(6493, 6562, 6625),
 			GRADE_8=c(6509, 6590, 6651),
-			GRADE_10=c(271, 339)))
+			GRADE_10=c(271, 339)),
+		MATHEMATICS.2026=list( ### TRANSITION YEAR 2026: 2026 (new) standards expressed on the OLD (2019/ILEARN) scale via equipercentile equating (see SGP_Sandbox/Indiana_2026_ILEARN_Scale_Change). Keyed to 2026 so baseline-referenced SGPs run on the OLD scale apply the CURRENT (new) standards.
+			GRADE_3=c(6356, 6426, 6534),
+			GRADE_4=c(6412, 6469, 6579),
+			GRADE_5=c(6443, 6509, 6603),
+			GRADE_6=c(6471, 6544, 6640),
+			GRADE_7=c(6469, 6562, 6657),
+			GRADE_8=c(6476, 6591, 6694),
+			GRADE_10=c(271, 339))) ### Grade 10 carried over from 2025 (no 2026 Grade 10 equating)
+### ---- MATHEMATICS official cuts on the NEW scale (for analyses REPORTED on the new scale, >=2027; NOT used in the 2026 transition) ----
+#		MATHEMATICS.2026.NEW_SCALE=list(
+#			GRADE_3=c(468, 485, 512),
+#			GRADE_4=c(489, 505, 541),
+#			GRADE_5=c(505, 531, 573),
+#			GRADE_6=c(525, 561, 617),
+#			GRADE_7=c(549, 605, 669),
+#			GRADE_8=c(585, 661, 738),
+#			GRADE_10=c(271, 339))
+
 
 SGPstateData[["IN"]][["Achievement"]][["Levels"]] <-
 	list(
@@ -10573,7 +10652,10 @@ SGPstateData[["WIDA"]][["Student_Report_Information"]] <- list(
 	Transformed_Achievement_Level_Cutscores_gaPlot = list(READING = 2017:2029)
 )
 
-widaACCESS_ss_to_pl <- source("Custom_Functions_Misc/WIDA/widaACCESS_ss_to_pl.R")
+wida.access.env <- new.env()
+sys.source("Custom_Functions_Misc/WIDA/widaACCESS_ss_to_pl.R", envir = wida.access.env)
+widaACCESS_ss_to_pl <- get("widaACCESS_ss_to_pl", envir = wida.access.env, inherits = FALSE)
+widaACCESS_pl_to_ss <- get("widaACCESS_pl_to_ss", envir = wida.access.env, inherits = FALSE)
 widaACCESS_2026_scale_score_transformation <- source("Custom_Functions_Misc/WIDA/widaACCESS_2026_scale_score_transformation.R")[["value"]]
 SGPstateData[["WIDA"]][["SGP_Configuration"]] <- list(
 	max.order.for.percentile=2,
@@ -10583,7 +10665,8 @@ SGPstateData[["WIDA"]][["SGP_Configuration"]] <- list(
 	sgp.projections.max.forward.progression.years=7,
 	return.norm.group.scale.scores=TRUE,
 	sgp.target.types=c("Scale_Score_Targets_CUKU", "Scale_Score_Targets_Current_CUKU"),
-	ss_to_pl_function=widaACCESS_ss_to_pl,
+	widaACCESS_ss_to_pl=widaACCESS_ss_to_pl,
+	widaACCESS_pl_to_ss=widaACCESS_pl_to_ss,
 	ss_2026_scale_score_transformation_function=widaACCESS_2026_scale_score_transformation)
 
 SGPstateData[["WIDA"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <-
@@ -11529,24 +11612,24 @@ SGPstateData[["WIDA_ID"]][["SGP_Configuration"]] <- list(
 SGPstateData[["WIDA_IN"]][["Achievement"]][["Knots_Boundaries"]] <- WIDA_Knots_Boundaries
 
 SGPstateData[["WIDA_IN"]][["Achievement"]][["Cutscores"]] <- list(
-	READING=list(
-		GRADE_0=c(229, 261, 293, 300, 309, 325, 350),
-		GRADE_1=c(242, 274, 315, 321, 330, 344, 368),
-		GRADE_2=c(254, 289, 329, 335, 344, 359, 383),
-		GRADE_3=c(265, 300, 340, 347, 356, 371, 396),
-		GRADE_4=c(279, 309, 350, 357, 366, 382, 406),
-		GRADE_5=c(286, 317, 358, 365, 374, 390, 415),
-		GRADE_6=c(291, 324, 365, 372, 382, 399, 423),
-		GRADE_7=c(298, 331, 372, 379, 389, 406, 431),
-		GRADE_8=c(304, 337, 378, 385, 395, 412, 438),
-		GRADE_9=c(311, 344, 385, 392, 402, 418, 446),
-		GRADE_10=c(318, 350, 391, 398, 408, 424, 453),
-		GRADE_11=c(325, 356, 397, 404, 413, 429, 459),
-		GRADE_12=c(331, 362, 402, 409, 418, 434, 466)))
-
+	    READING = list(
+        GRADE_0  = c(229, 261, 293, 303, 325, 350),
+        GRADE_1  = c(242, 274, 315, 324, 344, 368),
+        GRADE_2  = c(254, 289, 329, 338, 359, 383),
+        GRADE_3  = c(265, 300, 340, 350, 371, 396),
+        GRADE_4  = c(279, 309, 350, 360, 382, 406),
+        GRADE_5  = c(286, 317, 358, 368, 390, 415),
+        GRADE_6  = c(291, 324, 365, 376, 399, 423),
+        GRADE_7  = c(298, 331, 372, 383, 406, 431),
+        GRADE_8  = c(304, 337, 378, 389, 412, 438),
+        GRADE_9  = c(311, 344, 385, 395, 418, 446),
+        GRADE_10 = c(318, 350, 391, 401, 424, 453),
+        GRADE_11 = c(325, 356, 397, 407, 429, 459),
+        GRADE_12 = c(331, 362, 402, 412, 434, 466)))
+	
 SGPstateData[["WIDA_IN"]][["Achievement"]][["Levels"]] <- list(
-	Labels=c("WIDA Level 1", "WIDA Level 2", "WIDA Level 3", "WIDA Level 4", "WIDA Level 4.2", "WIDA Level 4.5", "WIDA Level 5", "WIDA Level 6", "NO SCORE"),
-	Proficient=c("Not Proficient", "Not Proficient", "Not Proficient", "Not Proficient", "Not Proficient", "Not Proficient", "Proficient","Proficient",NA))
+	Labels=c("WIDA Level 1", "WIDA Level 2", "WIDA Level 3", "WIDA Level 4", "WIDA Level 4.3", "WIDA Level 5", "WIDA Level 6", "NO SCORE"),
+	Proficient=c("Not Proficient", "Not Proficient", "Not Proficient", "Not Proficient", "Proficient", "Proficient","Proficient",NA))
 
 SGPstateData[["WIDA_IN"]][["Growth"]][["Levels"]] <- c("Low", "Typical", "High")
 
@@ -11566,7 +11649,7 @@ SGPstateData[["WIDA_IN"]][["Assessment_Program_Information"]] <- list(
 		Contact="1-866-276-7735"),
 	Content_Areas="Reading",
 	Grades_Tested=c(0,1,2,3,4,5,6,7,8,9,10,11,12),
-	Assessment_Years=c("2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"),
+	Assessment_Years=c("2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026"),
 	Test_Season="Spring",
 	Test_Vendor="WIDA")
 
@@ -11579,8 +11662,7 @@ SGPstateData[["WIDA_IN"]][["Student_Report_Information"]] <- list(
 		"Emerging"="WIDA Level 2",
 		"Developing"="WIDA Level 3",
 		"Expanding"="WIDA Level 4",
-		"Bridging 4.2"="WIDA Level 4.2",
-		"Bridging 4.5"="WIDA Level 4.5",
+		"Bridging 4.3"="WIDA Level 4.3",
 		"Bridging 5.0"="WIDA Level 5",
 		"Reaching"="WIDA Level 6"))
 
@@ -11761,20 +11843,34 @@ SGPstateData[["WIDA_MA"]][["SGP_Configuration"]] <- list(
 SGPstateData[["WIDA_MI"]][["Achievement"]][["Knots_Boundaries"]] <- WIDA_Knots_Boundaries
 
 SGPstateData[["WIDA_MI"]][["Achievement"]][["Cutscores"]] <- list(
-	READING=list(
-		GRADE_0=c(229,261,293,300,319,325,350),
-		GRADE_1=c(242,274,315,321,339,344,368),
-		GRADE_2=c(254,289,329,335,353,359,383),
-		GRADE_3=c(265,300,340,347,365,371,396),
-		GRADE_4=c(279,309,350,357,376,382,406),
-		GRADE_5=c(286,317,358,365,384,390,415),
-		GRADE_6=c(291,324,365,372,393,399,423),
-		GRADE_7=c(298,331,372,379,400,406,431),
-		GRADE_8=c(304,337,378,385,406,412,438),
-		GRADE_9=c(311,344,385,392,412,418,446),
-		GRADE_10=c(318,350,391,398,418,424,453),
-		GRADE_11=c(325,356,397,404,423,429,459),
-		GRADE_12=c(331,362,402,409,428,434,466)))
+  READING=list(
+    GRADE_0=c(213,241,269,276,292,297,350),
+    GRADE_1=c(275,308,362,367,383,388,411),
+    GRADE_2=c(278,306,357,366,390,398,429),
+    GRADE_3=c(288,313,359,369,394,401,434),
+    GRADE_4=c(288,313,359,369,394,401,434),
+    GRADE_5=c(294,320,370,380,404,412,448),
+    GRADE_6=c(315,351,408,417,445,453,483),
+    GRADE_7=c(323,360,417,426,455,464,488),
+    GRADE_8=c(330,368,425,434,464,472,492),
+    GRADE_9=c(332,374,435,444,470,477,513),
+    GRADE_10=c(341,383,443,452,477,485,517),
+    GRADE_11=c(349,392,451,460,484,492,520),
+    GRADE_12=c(357,401,457,466,491,499,525)))
+#	READING=list( ### PRE 2026 CUTSCORES
+#		GRADE_0=c(229,261,293,300,319,325,350),
+#		GRADE_1=c(242,274,315,321,339,344,368),
+#		GRADE_2=c(254,289,329,335,353,359,383),
+#		GRADE_3=c(265,300,340,347,365,371,396),
+#		GRADE_4=c(279,309,350,357,376,382,406),
+#		GRADE_5=c(286,317,358,365,384,390,415),
+#		GRADE_6=c(291,324,365,372,393,399,423),
+#		GRADE_7=c(298,331,372,379,400,406,431),
+#		GRADE_8=c(304,337,378,385,406,412,438),
+#		GRADE_9=c(311,344,385,392,412,418,446),
+#		GRADE_10=c(318,350,391,398,418,424,453),
+#		GRADE_11=c(325,356,397,404,423,429,459),
+#		GRADE_12=c(331,362,402,409,428,434,466)))
 
 SGPstateData[["WIDA_MI"]][["Achievement"]][["Levels"]] <- list(
                     Labels=c("WIDA Level 1", "WIDA Level 2", "WIDA Level 3", "WIDA Level 4", "WIDA Level 4.2", "WIDA Level 4.8", "WIDA Level 5", "WIDA Level 6"),
