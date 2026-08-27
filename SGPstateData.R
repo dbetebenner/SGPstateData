@@ -1780,7 +1780,7 @@ SGPstateData[["CO"]][["Achievement"]][["Cutscores"]] <-
 		Organization = list(
 			Name = "Colorado Department of Education",
 			Abbreviation = "CDE",
-			URL = "www.cde.state.co.us/accountability/stateaccountability",
+			URL = "ed.cde.state.co.us/accountability/stateaccountability",
 			Contact = "accountability@cde.state.co.us"),
 		Content_Areas = c(
 			"English Language Arts", "Mathematics",
