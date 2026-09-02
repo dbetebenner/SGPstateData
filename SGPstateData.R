@@ -370,7 +370,7 @@ SGPstateData[["ABQ"]][["Variable_Name_Lookup"]] <- read.csv("Variable_Name_Looku
 load("Knots_Boundaries/AL_Knots_Boundaries_052224.Rdata")
 SGPstateData[["AL"]][["Achievement"]][["Knots_Boundaries"]] <- AL_Knots_Boundaries
 
-SGPstateData[["AL"]][["Achievement"]][["Cutscores"]] <- 
+SGPstateData[["AL"]][["Achievement"]][["Cutscores"]] <-
 	list(MATHEMATICS=list(
 		GRADE_2=c(476, 523, 565),
 		GRADE_3=c(479, 530, 581),
@@ -412,8 +412,8 @@ SGPstateData[["AL"]][["Achievement"]][["Cutscores"]] <-
 	    GRADE_7=c(433, 491, 527),
 	    GRADE_8=c(420, 491, 538)))
 
-	
-SGPstateData[["AL"]][["Achievement"]][["Levels"]] <- 
+
+SGPstateData[["AL"]][["Achievement"]][["Levels"]] <-
 	list(
 	Labels=c("Level 1", "Level 2", "Level 3", "Level 4", "No Score"),
 	Proficient=c("Not Proficient", "Not Proficient", "Proficient", "Proficient", NA))
@@ -422,9 +422,9 @@ SGPstateData[["AL"]][["Growth"]][["Levels"]] <- c("C1", "C2", "C3", "C4")
 
 SGPstateData[["AL"]][["Growth"]][["System_Type"]] <- "Cohort Referenced"
 
-SGPstateData[["AL"]][["Growth"]][["Cutscores"]] <- 
+SGPstateData[["AL"]][["Growth"]][["Cutscores"]] <-
 	list(
-	Cuts=c(21, 41, 61), 
+	Cuts=c(21, 41, 61),
 	Labels=c("1st - 20th", "21st - 40th", "41st - 60th", "61st-99th"))
 
 SGPstateData[["AL"]][["Assessment_Program_Information"]][["CSEM"]] <- "AL_CSEM"
@@ -1780,7 +1780,7 @@ SGPstateData[["CO"]][["Achievement"]][["Cutscores"]] <-
 		Organization = list(
 			Name = "Colorado Department of Education",
 			Abbreviation = "CDE",
-			URL = "www.cde.state.co.us/accountability/stateaccountability",
+			URL = "ed.cde.state.co.us/accountability/stateaccountability",
 			Contact = "accountability@cde.state.co.us"),
 		Content_Areas = c(
 			"English Language Arts", "Mathematics",
@@ -2125,7 +2125,7 @@ SGPstateData[["CT"]][["Student_Report_Information"]] <-
 		"Advanced"="Advanced"))
 
 #########################################################
-### DELAWARE 
+### DELAWARE
 #########################################################
 
 load("Knots_Boundaries/DE_Knots_Boundaries.Rdata")
@@ -2605,7 +2605,7 @@ SGPstateData[["ERB"]][["Growth"]][["Levels"]] <- c("Below Year's Growth", "At or
 SGPstateData[["ERB"]][["Growth"]][["System_Type"]] <- "Cohort Referenced"
 SGPstateData[["ERB"]][["Growth"]][["Cutscores"]] <- list(Cuts=c(23, 76), Labels=list("1st - 22nd", "23rd - 76th", "77th - 99th"))
 
-SGPstateData[["ERB"]][["Assessment_Program_Information"]] <- 
+SGPstateData[["ERB"]][["Assessment_Program_Information"]] <-
 	list(
 		Grades_Tested=c(1,2,3,4,5,6,7,8,9,10),
 		Test_Vendor="ERB",
@@ -3234,7 +3234,7 @@ SGPstateData[["GA"]][["SGP_Configuration"]] <-
 		rq.method = "fn",
 		print.other.gp=TRUE,
 		print.sgp.order=TRUE,
-		sgp.cohort.size=1000, ## Decreased to 1000 in 2024 
+		sgp.cohort.size=1000, ## Decreased to 1000 in 2024
 		sgp.less.than.sgp.cohort.size.return="<1000",
 		sgp.target.scale.scores.merge="all_years_lagged_current",
 		# goodness.of.fit.minimum.n = 1, #  No longer needed with 'sgp.cohort.size' set.
@@ -4403,7 +4403,7 @@ SGPstateData[["IL"]][["Assessment_Program_Information"]] <-
 		Grades_Tested = c(3, 4, 5, 6, 7, 8), # ,9,10,11
 		Assessment_Years = c("2014_2015.1", "2014_2015.2", "2015_2016.1", "2015_2016.2", "2016_2017.1", "2016_2017.2", "2017_2018.1", "2017_2018.2", "2018_2019.1", "2018_2019.2",
 		                     "2019_2020.2", "2020_2021.2", "2021_2022.2"),
-		Test_Season = "Spring", # Fall & 
+		Test_Season = "Spring", # Fall &
 		Test_Vendor = "Pearson",
 		CSEM = "SCALE_SCORE_CSEM")
 
@@ -7681,9 +7681,9 @@ SGPstateData[["NM_MSR"]][["Student_Report_Information"]] <-
 			ELA=c("2018", "2019", "2022")),
 		Vertical_Scale=list(ELA=FALSE, MATHEMATICS=FALSE),
 		Content_Areas_Labels=list(
-				ELA="English Language Arts", MATHEMATICS="Math"), 
+				ELA="English Language Arts", MATHEMATICS="Math"),
 		Content_Areas_Domains=list(
-				ELA="ELA", MATHEMATICS="MATHEMATICS"), 
+				ELA="ELA", MATHEMATICS="MATHEMATICS"),
 		Grades_Reported=list(
 			ELA=c("3","4","5","6","7","8","9","10","11"), MATHEMATICS=c("3","4","5","6","7","8","9","10","11")),
 		Grades_Reported_Domains=list(
@@ -7739,7 +7739,7 @@ SGPstateData[["NM"]][["Student_Report_Information"]] <-
 		Transformed_Achievement_Level_Cutscores_gaPlot=list(MATHEMATICS=as.character(2022:2028), ELA=as.character(2022:2028)),
 		Vertical_Scale=list(ELA=FALSE, MATHEMATICS=FALSE),
 		Content_Areas_Labels=list(
-				ELA="English Language Arts", MATHEMATICS="Math"), 
+				ELA="English Language Arts", MATHEMATICS="Math"),
 		Grades_Reported=list(
 			ELA=c("3","4","5","6","7","8"), MATHEMATICS=c("3","4","5","6","7","8")),
 		Projection_Fan_Limits=c(10, 90),
@@ -8041,7 +8041,7 @@ SGPstateData[["RLI"]][["Student_Report_Information"]] <-
 		Projection_Fan_Limits=c(5, 95),
 		Content_Areas_Labels=list(MATHEMATICS="Math", MATHEMATICS_RASCH="Mathematics", MATHEMATICS_SPANISH="Mathematics", MATHEMATICS_SPANISH_RASCH="Mathematics", READING="Reading", READING_RASCH="Reading", READING_SPANISH="Reading", READING_SPANISH_RASCH="Reading", READING_UNIFIED="Reading", READING_UNIFIED_RASCH="Reading", EARLY_LITERACY="Early Literacy", EARLY_LITERACY_RASCH="Early Literacy", EARLY_LITERACY_SPANISH="Early Literacy", EARLY_LITERACY_SPANISH_RASCH="Early Literacy"),
 		Grades_Reported=list(MATHEMATICS=do.call(paste, c(expand.grid(c('K', 1:12), 1:3), sep=".")), MATHEMATICS_RASCH=do.call(paste, c(expand.grid(c('K', 1:12), 1:3), sep=".")), MATHEMATICS_SPANISH=do.call(paste, c(expand.grid(c('K', 1:12), 1:3), sep=".")), MATHEMATICS_SPANISH_RASCH=do.call(paste, c(expand.grid(c('K', 1:12), 1:3), sep=".")),
-							 READING=do.call(paste, c(expand.grid(c('K', 1:12), 1:3), sep=".")), READING_RASCH=do.call(paste, c(expand.grid(c('K', 1:12), 1:3), sep=".")), READING_SPANISH=do.call(paste, c(expand.grid(c('K', 1:12), 1:3), sep=".")), READING_SPANISH_RASCH=do.call(paste, c(expand.grid(c('K', 1:12), 1:3), sep=".")), 
+							 READING=do.call(paste, c(expand.grid(c('K', 1:12), 1:3), sep=".")), READING_RASCH=do.call(paste, c(expand.grid(c('K', 1:12), 1:3), sep=".")), READING_SPANISH=do.call(paste, c(expand.grid(c('K', 1:12), 1:3), sep=".")), READING_SPANISH_RASCH=do.call(paste, c(expand.grid(c('K', 1:12), 1:3), sep=".")),
 							 READING_UNIFIED=do.call(paste, c(expand.grid(c('K',1,2,3), 1:3), sep=".")), READING_UNIFIED_RASCH=do.call(paste, c(expand.grid(c('K',1,2,3), 1:3), sep=".")),
 							 EARLY_LITERACY=do.call(paste, c(expand.grid(c('PK','K',1,2,3), 1:3), sep=".")), EARLY_LITERACY_RASCH=do.call(paste, c(expand.grid(c('PK','K',1,2,3), 1:3), sep=".")), EARLY_LITERACY_SPANISH=do.call(paste, c(expand.grid(c('PK','K',1,2,3), 1:3), sep=".")), EARLY_LITERACY_SPANISH_RASCH=do.call(paste, c(expand.grid(c('PK','K',1,2,3), 1:3), sep="."))),
 		Achievement_Level_Labels=list(
@@ -9039,10 +9039,14 @@ SGPstateData[["SD"]][['SGP_Configuration']] <- list(
 
 load("Knots_Boundaries/UT_Knots_Boundaries-RISE_UAp.Rdata")
 load("Knots_Boundaries/UT_Science_Knots_Bounds_2021.rda")
+load("Knots_Boundaries/UT_ELA_2025_KBs.rda")
+
 SGPstateData[["UT"]][["Achievement"]][["Knots_Boundaries"]] <-
     c(UT_Knots_Boundaries,
-	  UT_Science_Knots_Bounds_2021
+      UT_Science_Knots_Bounds_2021
 	 )
+SGPstateData[["UT"]][["Achievement"]][["Knots_Boundaries"]][["ELA.2025"]] <-
+    UT_ELA_2025_KBs
 
 SGPstateData[["UT"]][["Achievement"]][["Cutscores"]] <-
 	list( ### MOVING forward in 2021 with equated scores for 2018, 2017, and 2016 so using 2019 RISE cutscores for prior years as well
@@ -9120,6 +9124,7 @@ SGPstateData[["UT"]][["SGP_Configuration"]] <-
 		sgp.projections.use.only.complete.matrices=FALSE,
 		sgPlot.use.alternate.student.id="SSID"
 	)
+SGPstateData[["UT"]][["Assessment_Program_Information"]][[""]] <-
 
 SGPstateData[["UT"]][["Assessment_Program_Information"]] <-
 	list(
@@ -9131,41 +9136,41 @@ SGPstateData[["UT"]][["Assessment_Program_Information"]] <-
 			URL="www.schools.utah.gov",
 			Contact="(801) 538-7811"),
 		Content_Areas=c("ELA", "MATHEMATICS", "SCIENCE"),
-		# Scale_Change=list(ELA="2019", MATHEMATICS="2019", SCIENCE="2019"),
+		Scale_Change = list(ELA = 2025),
+		    # list(ELA="2019", MATHEMATICS="2019", SCIENCE="2019"),
 		Grades_Tested=c(3,4,5,6,7,8,9,10),
 		Test_Season="Spring",
 		Assessment_Years=c("2014", "2015", "2016", "2017", "2018", "2019", "2021"),
 		Test_Vendor="Questar/Pearson")
 
-
-SGPstateData[["UT"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <- list(
-    Assessment_Abbreviation = c("RISE", "UA+"),
-    Assessment_Abbreviation.2025 = c("RISE", "UA+"),
-    Assessment_Name = c("Readiness Improvement Success Empowerment", "Utah Aspire Plus"),
-    Assessment_Name.2025 = c("Readiness Improvement Success Empowerment", "Utah Aspire Plus"),
-    Achievement_Levels = list(
-        Labels = c("Below", "Approaching", "Proficient", "Highly"),
-        Proficient = c("Not Proficient", "Not Proficient", "Proficient", "Proficient")),
-    Achievement_Levels.2025 = list(
-        Labels = c("Below", "Approaching", "Proficient", "Highly"),
-        Proficient = c("Not Proficient", "Not Proficient", "Proficient", "Proficient")),
-    Achievement_Level_Labels = list(
-        "Below" = "Below",
-        "Approaching" = "Approaching",
-        "Proficient" = "Proficient",
-        "Highly" = "Highly"),
-    Achievement_Level_Labels.2025 = list(
-        "Below" = "Below",
-        "Approaching" = "Approaching",
-        "Proficient" = "Proficient",
-        "Highly" = "Highly"),
-    Content_Areas_Labels = list(ELA = "ELA"), # MATHEMATICS = "Math", SCIENCE = "Science"),
-    Content_Areas_Labels.2025 = list(ELA = "ELA"), # MATHEMATICS = "Math", 
-    Vertical_Scale = "No",
-    Vertical_Scale.2025 = "No",
-    Grades_Tested = 3:10,
-    Grades_Tested.2025 = 3:10,
-    Year = "2025")
+# SGPstateData[["UT"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <- list(
+#     Assessment_Abbreviation = c("RISE", "UA+"),
+#     Assessment_Abbreviation.2025 = c("RISE", "UA+"),
+#     Assessment_Name = c("Readiness Improvement Success Empowerment", "Utah Aspire Plus"),
+#     Assessment_Name.2025 = c("Readiness Improvement Success Empowerment", "Utah Aspire Plus"),
+#     Achievement_Levels = list(
+#         Labels = c("Below", "Approaching", "Proficient", "Highly"),
+#         Proficient = c("Not Proficient", "Not Proficient", "Proficient", "Proficient")),
+#     Achievement_Levels.2025 = list(
+#         Labels = c("Below", "Approaching", "Proficient", "Highly"),
+#         Proficient = c("Not Proficient", "Not Proficient", "Proficient", "Proficient")),
+#     Achievement_Level_Labels = list(
+#         "Below" = "Below",
+#         "Approaching" = "Approaching",
+#         "Proficient" = "Proficient",
+#         "Highly" = "Highly"),
+#     Achievement_Level_Labels.2025 = list(
+#         "Below" = "Below",
+#         "Approaching" = "Approaching",
+#         "Proficient" = "Proficient",
+#         "Highly" = "Highly"),
+#     Content_Areas_Labels = list(ELA = "ELA"), # MATHEMATICS = "Math", SCIENCE = "Science"),
+#     Content_Areas_Labels.2025 = list(ELA = "ELA"), # MATHEMATICS = "Math",
+#     Vertical_Scale = "No",
+#     Vertical_Scale.2025 = "No",
+#     Grades_Tested = 3:10,
+#     Grades_Tested.2025 = 3:10,
+#     Year = "2025")
 
 
 SGPstateData[["UT"]][["Student_Report_Information"]] <- list(
@@ -11203,7 +11208,7 @@ SGPstateData[["WIDA_GA"]][["Student_Report_Information"]] <- list(
 	# Transformed_Achievement_Level_Cutscores = list(READING = "2026"), # maybe use after 2026 scale changes?
 	# Transformed_Achievement_Level_Cutscores_gaPlot = list(READING = "2026"),
 	file_remove_pattern = "",
-    catalog_name = 
+    catalog_name =
 		"file.path(sgPlot.folder, year_folder, 'All_Schools', paste(i, j, gsub('/', '-', tmp_school_name), 'ACCESS_SGP', year_folder, 'ISR.pdf', sep = '_'))"
 )
 
@@ -11384,7 +11389,7 @@ SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Zero_to_K"]] <- "
 SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Font_Family"]] <- "Helvetica-Narrow"
 SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Report_Text"]] <- Report_Text_SPANISH
 SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Report_Text_Size"]] <- 0.785
-SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Report_Title"]] <- 
+SGPstateData[["WIDA_GA_SPANISH"]][["Custom_Student_Report"]][["Report_Title"]] <-
                 "Reporte estudiantil sobre el desarrollo ling\u{FC}\u{ED}stico en ingl\u{E9}s, 2026"
 
 SGPstateData[["WIDA_GA_SPANISH"]][["Student_Report_Information"]] <- list(
@@ -11421,7 +11426,7 @@ SGPstateData[["WIDA_GA_SPANISH"]][["Student_Report_Information"]] <- list(
 		"5-Nivel de transformaci\u{F3}n" = "Level 5",
 		"6-Nivel de trascendencia" = "Level 6"),
 	file_remove_pattern = "",
-    catalog_name = 
+    catalog_name =
 		"file.path(sgPlot.folder, year_folder, 'All_Schools', paste(i, j, gsub('/', '-', tmp_school_name), 'ACCESS_SGP', year_folder, 'ISR.pdf', sep = '_'))"
 )
 
@@ -11627,7 +11632,7 @@ SGPstateData[["WIDA_IN"]][["Achievement"]][["Cutscores"]] <- list(
         GRADE_10 = c(318, 350, 391, 401, 424, 453),
         GRADE_11 = c(325, 356, 397, 407, 429, 459),
         GRADE_12 = c(331, 362, 402, 412, 434, 466)))
-	
+
 SGPstateData[["WIDA_IN"]][["Achievement"]][["Levels"]] <- list(
 	Labels=c("WIDA Level 1", "WIDA Level 2", "WIDA Level 3", "WIDA Level 4", "WIDA Level 4.3", "WIDA Level 5", "WIDA Level 6", "NO SCORE"),
 	Proficient=c("Not Proficient", "Not Proficient", "Not Proficient", "Not Proficient", "Proficient", "Proficient","Proficient",NA))
@@ -12362,7 +12367,7 @@ SGPstateData[["WIDA_RI"]][["SGP_Configuration"]] <- list(
 
 
 ##########################################################################################
-### WORLD CLASS INSTRUCTIONAL DESIGN and ASSESSMENT (WIDA) WASHINGTON 
+### WORLD CLASS INSTRUCTIONAL DESIGN and ASSESSMENT (WIDA) WASHINGTON
 ##########################################################################################
 
 SGPstateData[["WIDA_WA"]][["Achievement"]][["Knots_Boundaries"]] <- WIDA_Knots_Boundaries
