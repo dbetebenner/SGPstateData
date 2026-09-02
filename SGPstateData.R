@@ -4707,6 +4707,7 @@ SGPstateData[["IN"]][["SGP_Configuration"]] <- list(
 	sgp.loss.hoss.adjustment="IN",
 	return.norm.group.scale.scores=TRUE,
 	print.other.gp=TRUE,
+	sgp.target.scale.scores.merge="1_year_lagged_current",
 	lagged.percentile.trajectory.values=c(1,35,65,99))
 
 SGPstateData[["IN"]][["Variable_Name_Lookup"]] <- read.csv("Variable_Name_Lookup/IN_Variable_Name_Lookup.csv", colClasses=c(rep("character",4), "logical"))
