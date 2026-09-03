@@ -4702,8 +4702,8 @@ SGPstateData[["IN"]][["SGP_Configuration"]] <- list(
 	max.order.for.projection=2,
 	sgp.projections.baseline.max.order=2,
 	sgp.projections.lagged.baseline.max.order=2,
+	max.sgp.target.years.forward=3:4,
 	sgp.projections.max.forward.progression.years=4,
-	max.sgp.target.years.forward.projection=3:4,
 	percentile.cuts=c(1,35,65,99),
 	sgp.loss.hoss.adjustment="IN",
 	return.norm.group.scale.scores=TRUE,
@@ -6076,6 +6076,7 @@ SGPstateData[["MI"]][["Student_Report_Information"]] <- list(
 SGPstateData[["MI"]][["SGP_Configuration"]] <-
 	list(
 		max.sgp.target.years.forward=1:7,
+		sgp.projections.max.forward.progression.years=7,
 		print.other.gp=TRUE,
 		sgp.target.scale.scores.merge="all_years_lagged_current")
 
@@ -8058,8 +8059,6 @@ SGPstateData[["RLI"]][["SGP_Configuration"]] <-
 		percentile.cuts=50, ### For within window projections
 		percentile.cuts.round.digits=10L,
 		SGPt.max.time=TRUE,
-#		max.sgp.target.years.forward=9,
-#		sgp.projections.max.forward.progression.years=9,
 		max.sgp.target.years.forward=10,
 		sgp.projections.max.forward.progression.years=10,
 		sgp.projections.projection.unit="YEAR",
@@ -8235,8 +8234,6 @@ SGPstateData[["RLI_UK"]][["SGP_Configuration"]] <-
 		print.other.gp=TRUE,
 		percentile.cuts=50, ### For within window projections
 		SGPt.max.time=TRUE,
-#		max.sgp.target.years.forward=9,
-#		sgp.projections.max.forward.progression.years=9,
 		max.sgp.target.years.forward=10,
 		sgp.projections.max.forward.progression.years=10,
 		sgp.projections.projection.unit="YEAR",
@@ -9784,7 +9781,8 @@ SGPstateData[["WA"]][["Student_Report_Information"]] <- list(
 SGPstateData[['WA']][['SGP_Configuration']] <- list(
 	max.order.for.percentile=3,
 	max.order.for.projection=3,
-	max.sgp.target.years.forward=2,
+	max.sgp.target.years.forward=3,
+	sgp.projections.max.forward.progression.years=3,
 	gPlot.sgp.targets.timeframe=2,
 	sgPlot.use.student.school.name=TRUE,
 	sgp.loss.hoss.adjustment="WA")
@@ -11097,6 +11095,7 @@ SGPstateData[["WIDA_DPS"]][["SGP_Configuration"]] <- list(
 	max.order.for.percentile=2,
 	max.order.for.projection=2,
 	max.sgp.target.years.forward=5,
+	sgp.projections.max.forward.progression.years=5,
 	sgp.minimum.default.panel.years=2,
 	sgp.projections.max.forward.progression.years=7,
 	sgp.target.types=c("Scale_Score_Targets_CUKU", "Scale_Score_Targets_Current_CUKU"))
@@ -11217,6 +11216,7 @@ SGPstateData[["WIDA_GA"]][["SGP_Configuration"]] <- list(
 	max.order.for.percentile = 2,
 	max.order.for.projection = 2,
 	max.sgp.target.years.forward = 1:7,
+	sgp.projections.max.forward.progression.years=7,
 	sgp.minimum.default.panel.years = 2,
 	sgp.projections.max.forward.progression.years = 7,
 	return.norm.group.scale.scores = TRUE,
@@ -11518,6 +11518,7 @@ SGPstateData[["WIDA_HI"]][["SGP_Configuration"]] <- list(
 	max.order.for.percentile=2,
 	max.order.for.projection=2,
 	max.sgp.target.years.forward=1:6,
+	sgp.projections.max.forward.progression.years=6,
 	sgp.minimum.default.panel.years=2,
 	sgp.projections.max.forward.progression.years=7,
 	return.norm.group.scale.scores=TRUE,
@@ -11599,8 +11600,8 @@ SGPstateData[["WIDA_ID"]][["SGP_Configuration"]] <- list(
 	max.order.for.percentile=2,
 	max.order.for.projection=2,
 	max.sgp.target.years.forward=1:6,
+	sgp.projections.max.forward.progression.years=6,
 	sgp.minimum.default.panel.years=2,
-	sgp.projections.max.forward.progression.years=7,
 	return.norm.group.scale.scores=TRUE,
 	print.other.gp=TRUE,
 	print.sgp.order=TRUE,
@@ -11677,8 +11678,8 @@ SGPstateData[["WIDA_IN"]][["SGP_Configuration"]] <- list(
 	max.order.for.percentile=2,
 	max.order.for.projection=2,
 	max.sgp.target.years.forward=1:6,
+	sgp.projections.max.forward.progression.years=6,
 	sgp.minimum.default.panel.years=2,
-	sgp.projections.max.forward.progression.years=7,
 	return.norm.group.scale.scores=TRUE,
 	print.other.gp=TRUE,
 	print.sgp.order=TRUE,
@@ -11979,6 +11980,7 @@ SGPstateData[["WIDA_MI"]][["SGP_Configuration"]] <- list(
 	max.order.for.percentile=2,
 	max.order.for.projection=2,
 	max.sgp.target.years.forward=1:7,
+	sgp.projections.max.forward.progression.years=7,
 	print.other.gp=TRUE,
 	sgp.target.scale.scores.merge="all_years_lagged_current",
 	sgPlot.fan.condition="head(Achievement_Levels, 1) %in% paste('WIDA Level', 1:4)",
@@ -12136,8 +12138,8 @@ SGPstateData[["WIDA_NH"]][["SGP_Configuration"]] <- list(
 	max.order.for.percentile=2,
 	max.order.for.projection=2,
 	max.sgp.target.years.forward=1:6,
-	sgp.minimum.default.panel.years=2,
 	sgp.projections.max.forward.progression.years=7,
+	sgp.minimum.default.panel.years=2,
 	return.norm.group.scale.scores=TRUE,
 	print.other.gp=TRUE,
 	print.sgp.order=TRUE,
@@ -12356,8 +12358,8 @@ SGPstateData[["WIDA_RI"]][["SGP_Configuration"]] <- list(
 	max.order.for.percentile=2,
 	max.order.for.projection=2,
 	max.sgp.target.years.forward=1:6,
-	sgp.minimum.default.panel.years=2,
 	sgp.projections.max.forward.progression.years=7,
+	sgp.minimum.default.panel.years=2,
 	return.norm.group.scale.scores=TRUE,
 	print.other.gp=TRUE,
 	print.sgp.order=TRUE,
@@ -12712,6 +12714,55 @@ SGPstateData[["WY"]][["Assessment_Program_Information"]][["Assessment_Transition
 		Vertical_Scale.2013_2014="Yes",
 		Year="2013_2014"
 		)
+
+######################################################
+###
+### Tests
+###
+######################################################
+
+### When max.sgp.target.years.forward is set, sgp.projections.max.forward.progression.years
+### must be present and at least as large as max(max.sgp.target.years.forward).
+### analyzeSGP defaults sgp.projections.max.forward.progression.years to 3; a larger
+### target window without a matching projection horizon silently under-projects.
+
+tmp.projection.years.violations <- NULL
+for (state.iter in sort(ls(SGPstateData))) {
+	tmp.config <- SGPstateData[[state.iter]][["SGP_Configuration"]]
+	tmp.target.years <- tmp.config[["max.sgp.target.years.forward"]]
+	if (is.null(tmp.target.years)) next
+	tmp.progression.years <- tmp.config[["sgp.projections.max.forward.progression.years"]]
+	tmp.target.years.max <- max(tmp.target.years)
+	tmp.ok <- is.numeric(tmp.progression.years) &&
+		length(tmp.progression.years) >= 1L &&
+		max(tmp.progression.years) >= tmp.target.years.max
+	if (!tmp.ok) {
+		tmp.progression.label <- if (is.null(tmp.progression.years)) {
+			"missing"
+		} else {
+			paste(deparse(tmp.progression.years), collapse="")
+		}
+		tmp.projection.years.violations <- c(tmp.projection.years.violations, paste0(
+			"\t\t", state.iter,
+			": max.sgp.target.years.forward = ", paste(deparse(tmp.target.years), collapse=""),
+			" (max = ", tmp.target.years.max, ")",
+			"; sgp.projections.max.forward.progression.years = ", tmp.progression.label))
+	}
+}
+
+if (length(tmp.projection.years.violations) > 0L) {
+	stop(paste(c(
+		"\tNOTE: The following state(s) set 'max.sgp.target.years.forward' without a compatible 'sgp.projections.max.forward.progression.years'.",
+		"\t      'sgp.projections.max.forward.progression.years' must be present and >= max('max.sgp.target.years.forward').",
+		tmp.projection.years.violations,
+		"\tThis configuration error must be fixed in SGPstateData before the object can be built."
+	), collapse="\n"))
+}
+
+rm(list=intersect(ls(), c(
+	"tmp.projection.years.violations", "state.iter", "tmp.config",
+	"tmp.target.years", "tmp.progression.years", "tmp.target.years.max",
+	"tmp.ok", "tmp.progression.label")))
 
 
 ######################################################
