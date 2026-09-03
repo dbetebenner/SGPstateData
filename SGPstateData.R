@@ -4649,7 +4649,7 @@ SGPstateData[["IN"]][["Assessment_Program_Information"]] <-
 #		Scale_Change=list(MATHEMATICS="2019", ELA="2019"),
 		Grades_Tested=c(3,4,5,6,7,8,10),
 		Test_Season="Spring",
-		Test_Vendor="AIR")
+		Test_Vendor="Cambium")
 
 #SGPstateData[["IN"]][["Assessment_Program_Information"]][["Assessment_Transition"]] <-
 #	list(
@@ -4700,9 +4700,10 @@ SGPstateData[["IN"]][["Student_Report_Information"]] <- list(
 SGPstateData[["IN"]][["SGP_Configuration"]] <- list(
 	max.order.for.percentile=2,
 	max.order.for.projection=2,
-	max.sgp.target.years.forward=3:4,
 	sgp.projections.baseline.max.order=2,
 	sgp.projections.lagged.baseline.max.order=2,
+	sgp.projections.max.forward.progression.years=4,
+	max.sgp.target.years.forward.projection=3:4,
 	percentile.cuts=c(1,35,65,99),
 	sgp.loss.hoss.adjustment="IN",
 	return.norm.group.scale.scores=TRUE,
@@ -11826,8 +11827,8 @@ SGPstateData[["WIDA_MA"]][["Student_Report_Information"]] <- list(
 SGPstateData[["WIDA_MA"]][["SGP_Configuration"]] <- list(
 		max.order.for.percentile=2,
 		max.order.for.projection=2,
-        	sgp.projections.baseline.max.order=2,
-        	sgp.projections.lagged.baseline.max.order=2,
+        sgp.projections.baseline.max.order=2,
+        sgp.projections.lagged.baseline.max.order=2,
 		max.sgp.target.years.forward=1:5,
 		sgp.projections.max.forward.progression.years=7,
 		sgp.minimum.default.panel.years=2,
