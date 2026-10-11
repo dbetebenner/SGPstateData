@@ -3163,7 +3163,7 @@ SGPstateData[["GA"]][["Assessment_Program_Information"]] <-
 		Grades_Tested=c(3,4,5,6,7,8),
 		Assessment_Years=c('2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2021', '2022', '2023', '2024'),
 		Test_Season="Spring",
-		Test_Vendor="CTB/McGraw Hill",
+		Test_Vendor="DRC",
 #		Scale_Change=list(MATHEMATICS='2015', ELA='2015', SCIENCE='2015', SOCIAL_STUDIES='2015',
 #			AMERICAN_LIT='2015', ANALYTIC_GEOMETRY='2015', BIOLOGY='2015', COORDINATE_ALGEBRA='2015', ALGEBRA_I='2015', ECONOMICS='2015', GRADE_9_LIT='2015', PHYSICAL_SCIENCE='2015', US_HISTORY='2015'),
 		CSEM="SCALE_SCORE_CSEM")
@@ -3299,7 +3299,8 @@ SGPstateData[["GA"]][["SGP_Configuration"]] <-
 		# 	SOCIAL_STUDIES=c("3", "4", "5", "6", "7", "8", "EOCT", "EOCT"),
 		# 	US_HISTORY=c("8", "EOCT", "EOCT"),
 		# 	ECONOMICS=c("EOCT", "EOCT"),
-			ALGEBRA_CC=c("3", "4", "5", "6", "7", "8", "EOCT")),
+			ALGEBRA_CC=c("3", "4", "5", "6", "7", "8", "EOCT"),
+			LIT_COMP_II = c("3", "4", "5", "6", "7", "8", "EOCT")),
 		content_area.projection.sequence = list(
 		# 	# READING=c("READING", "READING", "READING", "READING", "READING", "READING"), # Keep as long as READING used as a prior for getKnotsBoundaries function.
 		 	ELA=c("ELA", "ELA", "ELA", "ELA", "ELA", "ELA"),
@@ -3328,7 +3329,8 @@ SGPstateData[["GA"]][["SGP_Configuration"]] <-
 		# 	SOCIAL_STUDIES=c("SOCIAL_STUDIES", "SOCIAL_STUDIES", "SOCIAL_STUDIES", "SOCIAL_STUDIES", "SOCIAL_STUDIES", "SOCIAL_STUDIES", "US_HISTORY", "ECONOMICS"),
 		# 	US_HISTORY=c("SOCIAL_STUDIES", "US_HISTORY", "ECONOMICS"),
 		# 	ECONOMICS=c("US_HISTORY", "ECONOMICS"),
-			ALGEBRA_CC=	c(rep("MATHEMATICS", 6), "ALGEBRA_CC")),
+			ALGEBRA_CC=	c(rep("MATHEMATICS", 6), "ALGEBRA_CC"),
+			LIT_COMP_II = c(rep("ELA", 6), "LIT_COMP_II")),
 		year_lags.projection.sequence = list(
 		# 	# READING=rep(1L, 5), # Keep as long as READING used as a prior for getKnotsBoundaries function.
 		 	ELA = rep(1L, 5),
@@ -3352,7 +3354,8 @@ SGPstateData[["GA"]][["SGP_Configuration"]] <-
 		# 	SOCIAL_STUDIES=as.integer(c(1,1,1,1,1,3,1)),
 		# 	US_HISTORY=as.integer(c(3,1)),
 		# 	ECONOMICS=1L,
-			ALGEBRA_CC=rep(1L, 6)),
+			ALGEBRA_CC=rep(1L, 6),
+			LIT_COMP_II = rep(1L, 6)),   # adjust if Grade 8 -> EOCT is typically a 2-year lag),
 		max.forward.projection.sequence = list(
 		# 	READING=3, # Keep as long as READING used as a prior for getKnotsBoundaries function.
 		 	ELA=3,
@@ -3373,7 +3376,8 @@ SGPstateData[["GA"]][["SGP_Configuration"]] <-
 		# 	SOCIAL_STUDIES=3,
 		# 	US_HISTORY=3,
 		# 	ECONOMICS=3,
-			ALGEBRA_CC=3))
+			ALGEBRA_CC=3,
+			LIT_COMP_II=3))
 
 SGPstateData[["GA"]][["Variable_Name_Lookup"]] <-
      read.csv("Variable_Name_Lookup/GA_Variable_Name_Lookup_2023.csv",
